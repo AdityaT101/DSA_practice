@@ -1,0 +1,525 @@
+================================================================================
+                    ARRAY TRAVERSAL PATTERNS - COMPREHENSIVE GUIDE
+================================================================================
+
+
+================================================================================
+1. TWO POINTERS PATTERN
+================================================================================
+
+--------------------------------------------------------------------------------
+1A. OPPOSITE DIRECTION (CONVERGING)
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Searching pairs in sorted array
+  • Palindrome checking
+  • Container problems
+  • Finding triplets/pairs with target sum
+
+PATTERN:
+  
+  left = 0
+  right = array.length - 1
+  
+  while left < right:
+      if condition_met(left, right):
+          process and return/store result
+      
+      if need_larger_value:
+          left++      # move left pointer right
+      else:
+          right--     # move right pointer left
+
+KEY INSIGHT:
+  Start from both ends, move pointers based on comparison logic.
+  Reduces O(n²) to O(n).
+
+COMMON VARIATIONS:
+  ✓ Finding pairs that sum to target
+  ✓ Removing duplicates from sorted array
+  ✓ Checking if string is palindrome
+  ✓ Container with most water type problems
+
+
+--------------------------------------------------------------------------------
+1B. SAME DIRECTION (FAST-SLOW)
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • In-place array modification
+  • Removing elements
+  • Partitioning arrays
+  • Cycle detection
+
+PATTERN:
+  
+  slow = 0
+  fast = 0
+  
+  while fast < array.length:
+      if array[fast] meets_condition:
+          array[slow] = array[fast]
+          slow++
+      fast++
+  
+  # Result is in array[0...slow-1]
+
+KEY INSIGHT:
+  Fast pointer explores, slow pointer tracks valid position.
+  Avoids extra space - O(1) space complexity.
+
+COMMON VARIATIONS:
+  ✓ Remove duplicates in-place
+  ✓ Move zeros to end
+  ✓ Partition array (Dutch National Flag)
+  ✓ Merge sorted arrays in-place
+
+
+================================================================================
+2. SLIDING WINDOW PATTERN
+================================================================================
+
+--------------------------------------------------------------------------------
+2A. FIXED SIZE WINDOW
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Problems asking for "subarray of size K"
+  • Maximum/minimum in fixed-size windows
+  • Average of K consecutive elements
+
+PATTERN:
+  
+  window_sum = sum(array[0:k])    # Initial window
+  result = window_sum
+  
+  for i from k to array.length:
+      # Slide window: remove leftmost, add rightmost
+      window_sum = window_sum - array[i-k] + array[i]
+      result = update_result(result, window_sum)
+
+KEY INSIGHT:
+  Don't recalculate entire window - just update by removing left element
+  and adding right element. O(n) instead of O(n*k).
+
+COMMON VARIATIONS:
+  ✓ Maximum sum of K consecutive elements
+  ✓ Average of subarrays of size K
+  ✓ First negative in every window of size K
+  ✓ Sliding window maximum (use deque)
+
+
+--------------------------------------------------------------------------------
+2B. VARIABLE SIZE WINDOW
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Finding optimal subarray with certain property (min/max length)
+  • Longest/shortest substring problems
+  • At most K distinct elements
+
+PATTERN:
+  
+  left = 0
+  right = 0
+  current_state = initialize()
+  result = initialize_result()
+  
+  while right < array.length:
+      # Expand window
+      current_state = add(array[right])
+      
+      # Contract window while condition is violated/met
+      while window_invalid(current_state):
+          current_state = remove(array[left])
+          left++
+      
+      # Update result with current valid window
+      result = update(result, right - left + 1)
+      right++
+
+KEY INSIGHT:
+  Expand to find candidates, contract to optimize.
+  Both pointers move in same direction but at different rates.
+  Each element visited at most twice → O(n).
+
+COMMON VARIATIONS:
+  ✓ Longest substring without repeating characters
+  ✓ Minimum window substring containing all characters
+  ✓ Longest subarray with sum ≤ K
+  ✓ Subarray with exactly K distinct elements
+
+
+================================================================================
+3. PREFIX SUMS / RANGE QUERIES
+================================================================================
+
+--------------------------------------------------------------------------------
+3A. BASIC PREFIX SUM
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Multiple range sum queries on static array
+  • Need O(1) query time after preprocessing
+  • Subarray sum problems
+
+PATTERN:
+  
+  # Preprocessing: O(n)
+  prefix[0] = 0
+  for i from 0 to n-1:
+      prefix[i+1] = prefix[i] + array[i]
+  
+  # Query sum of array[left...right]: O(1)
+  range_sum = prefix[right+1] - prefix[left]
+
+KEY INSIGHT:
+  Precompute cumulative sums. Any range sum becomes difference of
+  two prefix values: sum(i to j) = prefix[j+1] - prefix[i]
+
+COMMON VARIATIONS:
+  ✓ Subarray sum equals K (use hashmap with prefix sums)
+  ✓ Count of subarrays with sum divisible by K
+  ✓ Range sum queries
+  ✓ Equilibrium index (left sum = right sum)
+
+
+--------------------------------------------------------------------------------
+3B. PREFIX SUM WITH HASHMAP
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Finding subarrays with specific sum property
+  • Count subarrays with sum = K
+  • Subarray sum divisible by K
+
+PATTERN:
+  
+  prefix_sum = 0
+  map = {0: 1}    # sum -> frequency
+  count = 0
+  
+  for each element:
+      prefix_sum += element
+      
+      # Check if (prefix_sum - target) exists
+      if (prefix_sum - target) in map:
+          count += map[prefix_sum - target]
+      
+      map[prefix_sum] = map.get(prefix_sum, 0) + 1
+
+KEY INSIGHT:
+  If prefix_sum[j] - prefix_sum[i] = target,
+  then subarray[i+1...j] has sum = target.
+
+COMMON VARIATIONS:
+  ✓ Subarray sum equals K
+  ✓ Continuous subarray sum (multiple of K)
+  ✓ Contiguous array (equal 0s and 1s)
+
+
+--------------------------------------------------------------------------------
+3C. 2D PREFIX SUM
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Rectangle sum queries in matrix
+  • 2D range queries
+  • Matrix subregion problems
+
+PATTERN:
+  
+  # Preprocessing
+  prefix[i][j] = matrix[i][j]
+               + prefix[i-1][j]
+               + prefix[i][j-1]
+               - prefix[i-1][j-1]
+  
+  # Query rectangle sum from (r1,c1) to (r2,c2)
+  sum = prefix[r2][c2]
+      - prefix[r1-1][c2]
+      - prefix[r2][c1-1]
+      + prefix[r1-1][c1-1]
+
+KEY INSIGHT:
+  Inclusion-exclusion principle for 2D regions.
+  Preprocess in O(m*n), query in O(1).
+
+================================================================================
+4. SUBARRAY PROBLEMS
+================================================================================
+
+--------------------------------------------------------------------------------
+4A. KADANE'S ALGORITHM (MAXIMUM SUBARRAY SUM)
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Finding optimal contiguous subarray
+  • Maximum/minimum sum problems
+  • Best time to buy/sell stock
+
+PATTERN:
+  
+  current_sum = 0
+  max_sum = -infinity
+  
+  for each element:
+      current_sum = max(element, current_sum + element)
+      max_sum = max(max_sum, current_sum)
+
+KEY INSIGHT:
+  At each position, decide whether to extend existing subarray or start fresh.
+  If current_sum becomes negative, start new subarray.
+
+COMMON VARIATIONS:
+  ✓ Maximum product subarray (track both max and min)
+  ✓ Maximum sum circular subarray
+  ✓ Maximum sum with at most K elements
+  ✓ Best time to buy/sell stock
+
+
+--------------------------------------------------------------------------------
+4B. SUBARRAY COUNT PATTERN
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Counting subarrays with certain property
+  • Number of subarrays with sum = K
+  • Subarrays with specific conditions
+
+PATTERN:
+  
+  count = 0
+  for each starting_position:
+      current_property = initialize()
+      
+      for each ending_position from starting_position:
+          update(current_property, array[ending_position])
+          
+          if property_satisfied(current_property):
+              count++
+
+OPTIMIZATION:
+  Often can be optimized with sliding window or prefix sums to avoid O(n²).
+
+KEY INSIGHT:
+  Sometimes "at most K" problems can be solved as:
+  atMost(K) - atMost(K-1) = exactly(K)
+
+================================================================================
+5. STRING MANIPULATION & PATTERN MATCHING
+================================================================================
+
+--------------------------------------------------------------------------------
+5A. CHARACTER FREQUENCY PATTERN
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Anagrams, permutations
+  • Character-based problems
+  • Grouping by character composition
+
+PATTERN:
+  
+  frequency_map = {}
+  
+  # Build frequency
+  for char in string:
+      frequency_map[char] = frequency_map.get(char, 0) + 1
+  
+  # Use frequency for comparison/validation
+
+COMMON VARIATIONS:
+  ✓ Group anagrams
+  ✓ Find all anagrams in string
+  ✓ Valid anagram
+  ✓ Minimum window substring
+
+
+--------------------------------------------------------------------------------
+5B. TWO POINTER STRING PATTERN
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Palindrome checking
+  • String reversal
+  • Character removal/validation
+
+PATTERN:
+  
+  left = 0
+  right = string.length - 1
+  
+  while left < right:
+      # Skip invalid characters
+      while left < right and not valid(string[left]):
+          left++
+      while left < right and not valid(string[right]):
+          right--
+      
+      # Compare/process
+      if string[left] != string[right]:
+          return false
+      
+      left++
+      right--
+
+COMMON VARIATIONS:
+  ✓ Valid palindrome (ignoring non-alphanumeric)
+  ✓ Palindrome with one deletion allowed
+  ✓ Reverse words in string
+
+
+--------------------------------------------------------------------------------
+5C. SLIDING WINDOW FOR STRINGS
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Substring problems with character constraints
+  • Longest/shortest substring with conditions
+  • Character frequency in window
+
+PATTERN:
+  
+  char_count = {}
+  left = 0
+  unique_chars = 0
+  
+  for right from 0 to string.length:
+      # Add right character
+      if string[right] not in char_count:
+          unique_chars++
+      char_count[string[right]]++
+      
+      # Contract if needed
+      while window_invalid(unique_chars, char_count):
+          char_count[string[left]]--
+          if char_count[string[left]] == 0:
+              unique_chars--
+          left++
+      
+      # Update result
+
+COMMON VARIATIONS:
+  ✓ Longest substring with K distinct characters
+  ✓ Longest substring without repeating characters
+  ✓ Minimum window substring
+  ✓ Permutation in string
+
+
+--------------------------------------------------------------------------------
+5D. PATTERN MATCHING BASICS
+--------------------------------------------------------------------------------
+
+WHEN TO USE:
+  • Finding patterns in strings
+  • Subsequence problems
+  • String searching
+
+APPROACH 1: SLIDING WINDOW (for contiguous patterns)
+  
+  pattern_length = len(pattern)
+  for i from 0 to string.length - pattern_length:
+      if string[i:i+pattern_length] matches pattern:
+          record position
+
+APPROACH 2: TWO POINTERS (for subsequences)
+  
+  string_ptr = 0
+  pattern_ptr = 0
+  
+  while string_ptr < string.length:
+      if string[string_ptr] == pattern[pattern_ptr]:
+          pattern_ptr++
+      string_ptr++
+      
+      if pattern_ptr == pattern.length:
+          # Found complete subsequence
+
+
+================================================================================
+6. DECISION FRAMEWORK - CHOOSING THE RIGHT PATTERN
+================================================================================
+
+CHOOSE TWO POINTERS WHEN:
+  ✓ Need to find pairs/triplets
+  ✓ Working with sorted array
+  ✓ Need in-place modification
+  ✓ Comparing elements from different positions
+  ✓ Palindrome checking
+  ✓ Removing duplicates
+
+CHOOSE SLIDING WINDOW WHEN:
+  ✓ Looking for contiguous subarray/substring
+  ✓ Problem mentions "consecutive elements"
+  ✓ Need to track window state (sum, count, etc.)
+  ✓ Optimization from O(n²) to O(n) is possible
+  ✓ "Longest/shortest substring" problems
+  ✓ "At most K" or "At least K" constraints
+
+CHOOSE PREFIX SUM WHEN:
+  ✓ Multiple range queries
+  ✓ Subarray sum problems
+  ✓ Need cumulative information
+  ✓ Can preprocess data
+  ✓ "Subarray sum equals K" type problems
+
+CHOOSE KADANE'S/DP WHEN:
+  ✓ Finding optimal subarray (max/min sum)
+  ✓ Decision at each step affects future
+  ✓ Need to track running state
+  ✓ Maximum/minimum subarray problems
+
+CHOOSE HASH MAP WHEN:
+  ✓ Need frequency counting
+  ✓ Anagram problems
+  ✓ Need O(1) lookup
+  ✓ Tracking seen elements
+
+
+================================================================================
+7. TIME & SPACE COMPLEXITY SUMMARY
+================================================================================
+
+┌─────────────────────┬──────────────────────────────┬─────────────────────┐
+│ PATTERN             │ TIME COMPLEXITY              │ SPACE COMPLEXITY    │
+├─────────────────────┼──────────────────────────────┼─────────────────────┤
+│ Two Pointers        │ O(n)                         │ O(1)                │
+│ Sliding Window      │ O(n)                         │ O(k) window state   │
+│ Prefix Sum          │ O(n) preprocess, O(1) query  │ O(n)                │
+│ Kadane's Algorithm  │ O(n)                         │ O(1)                │
+│ Frequency Map       │ O(n)                         │ O(k) unique chars   │
+│ 2D Prefix Sum       │ O(m*n) preprocess, O(1) query│ O(m*n)              │
+└─────────────────────┴──────────────────────────────┴─────────────────────┘
+
+
+================================================================================
+8. QUICK REFERENCE - PROBLEM KEYWORDS
+================================================================================
+
+KEYWORDS → PATTERN MAPPING:
+
+"sorted array" + "pair/triplet"           → Two Pointers (Opposite)
+"remove duplicates" + "in-place"          → Two Pointers (Same Direction)
+"palindrome"                              → Two Pointers (Opposite)
+
+"subarray of size K"                      → Sliding Window (Fixed)
+"longest/shortest substring"              → Sliding Window (Variable)
+"at most K distinct"                      → Sliding Window (Variable)
+"consecutive elements"                    → Sliding Window
+
+"range sum query"                         → Prefix Sum
+"subarray sum equals K"                   → Prefix Sum + HashMap
+"count subarrays with sum"                → Prefix Sum + HashMap
+
+"maximum subarray sum"                    → Kadane's Algorithm
+"best time to buy/sell stock"            → Kadane's Variation
+
+"anagram"                                 → Character Frequency (HashMap)
+"group by character"                      → Character Frequency (HashMap)
+
+
+================================================================================
+                              END OF GUIDE
+================================================================================

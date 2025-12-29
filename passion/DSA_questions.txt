@@ -1,0 +1,1147 @@
+L6 FAANG DSA Interview Questions - Comprehensive Guide
+
+DSA Category Breakdown & Question Distribution
+
+Expected Difficulty Mix for L6
+
+Easy: 5% (warm-up only)
+Medium: 40%
+Hard: 55%
+
+
+1. Arrays & Strings (20-25% of questions)
+
+Subcategories
+
+Two pointers / Sliding window
+Prefix sums / Range queries
+Subarray problems
+String manipulation & pattern matching
+
+
+Key Questions
+Medium:
+
+1. Longest Substring Without Repeating Characters
+
+2. Container With Most Water
+
+3. 3Sum / 4Sum
+
+4. Product of Array Except Self
+
+5. Minimum Window Substring
+
+6. Longest Palindromic Substring
+
+7. Group Anagrams
+
+8. Valid Parentheses (with variations)
+
+9. Rotate Array
+
+10. Find All Anagrams in a String
+
+11. Subarray Sum Equals K
+
+12. Maximum Subarray (Kadane's)
+
+13. Merge Intervals
+
+14. Insert Interval
+
+15. Non-overlapping Intervals
+
+
+
+
+
+Hard:
+
+16. Trapping Rain Water
+
+17. Sliding Window Maximum
+
+18. Minimum Window Substring (all variations)
+
+19. Longest Consecutive Sequence
+
+20. First Missing Positive
+
+21. Text Justification
+
+22. Regular Expression Matching
+
+23. Wildcard Matching
+
+24. Edit Distance
+
+25. Distinct Subsequences
+
+
+
+
+
+2. Hash Tables & Sets (10-15%)
+
+Subcategories
+
+Frequency counting
+Two-sum variants
+Grouping & deduplication
+Key Questions
+
+Medium:
+
+26. Two Sum / Two Sum II
+
+27. 4Sum II
+
+28. Top K Frequent Elements
+
+29. Group Shifted Strings
+
+30. Longest Consecutive Sequence
+
+31. Valid Sudoku
+
+32. Subarray Sum Equals K
+
+33. Continuous Subarray Sum
+
+34. LRU Cache (design)
+
+35. LFU Cache (design)
+
+
+
+
+
+Hard:
+
+36. Substring with Concatenation of All Words
+
+37. Max Points on a Line
+
+38. All O'one Data Structure
+
+39. Design In-Memory File System
+
+40. Time Based Key-Value Store
+
+
+
+
+
+
+
+3. Linked Lists (5-10%)
+
+Subcategories
+
+Reversal & manipulation
+Two pointers (fast/slow)
+Merge operations
+Key Questions
+
+
+
+Medium:
+
+41. Reverse Linked List II
+
+42. Add Two Numbers
+
+43. Remove Nth Node From End
+
+44. Reorder List
+
+45. Partition List
+
+46. Swap Nodes in Pairs
+
+47. Rotate List
+
+48. Copy List with Random Pointer
+
+49. Flatten Multilevel Doubly Linked List
+
+50. Sort List
+
+
+
+
+
+Hard:
+
+51. Merge K Sorted Lists
+
+52. Reverse Nodes in k-Group
+
+53. LRU Cache (linked list implementation)
+
+54. Design Skip List
+
+
+
+
+
+
+
+
+
+4. Trees & Binary Search Trees (15-20%)
+
+Subcategories
+
+Tree traversal (in/pre/post-order)
+BST properties
+Tree construction
+Path problems
+Lowest Common Ancestor
+Key Questions
+
+
+Medium:
+55. Binary Tree Level Order Traversal
+
+56. Binary Tree Zigzag Level Order
+
+57. Validate Binary Search Tree
+
+58. Kth Smallest Element in BST
+
+59. Lowest Common Ancestor of BST
+
+60. Binary Tree Right Side View
+
+61. Count Complete Tree Nodes
+
+62. Path Sum II / III
+
+63. Flatten Binary Tree to Linked List
+
+64. Construct Binary Tree from Preorder/Inorder
+
+65. Populating Next Right Pointers
+
+66. Binary Tree Maximum Path Sum
+
+67. Serialize and Deserialize Binary Tree
+
+68. Inorder Successor in BST
+
+69. Delete Node in BST
+70. Recover Binary Search Tree
+
+
+
+
+Hard:
+71. Binary Tree Maximum Path Sum
+72. Serialize and Deserialize Binary Tree (all types)
+73. Binary Tree Cameras
+74. Vertical Order Traversal
+75. All Nodes Distance K
+76. Count of Smaller Numbers After Self (BST approach)
+
+
+
+
+
+
+
+5. Graphs (15-20%)
+
+Subcategories
+
+BFS / DFS
+Topological sort
+Union Find (Disjoint Set)
+Shortest path (Dijkstra, Bellman-Ford)
+Minimum Spanning Tree
+Strongly Connected Components
+Key Questions
+
+
+
+Medium:
+
+77. Number of Islands
+
+78. Clone Graph
+
+79. Course Schedule I & II
+
+80. Pacific Atlantic Water Flow
+
+81. Surrounded Regions
+
+82. Word Ladder
+
+83. Minimum Height Trees
+
+84. Graph Valid Tree
+
+85. Number of Connected Components
+
+86. Accounts Merge
+
+87. Redundant Connection
+
+88. Network Delay Time
+
+89. Cheapest Flights Within K Stops
+
+90. Evaluate Division
+
+91. Is Graph Bipartite
+
+92. Shortest Bridge
+
+
+
+
+
+Hard:
+
+93. Word Ladder II
+
+94. Alien Dictionary
+
+95. Critical Connections in Network
+
+96. Minimum Cost to Connect All Points
+
+97. Swim in Rising Water
+
+98. Bus Routes
+
+99. Shortest Path Visiting All Nodes
+
+100. Reconstruct Itinerary
+
+101. Longest Increasing Path in Matrix
+
+102. Number of Islands II (Union Find)
+
+
+
+
+
+
+
+6. Dynamic Programming (20-25%)
+
+Subcategories
+
+1D DP (linear)
+2D DP (grid, strings)
+Knapsack variants
+Subsequence problems
+Game theory DP
+State machine DP
+Key Questions
+
+Medium:
+
+103. Climbing Stairs (with variations)
+
+104. House Robber I, II, III
+
+105. Coin Change
+
+106. Longest Increasing Subsequence
+
+107. Longest Common Subsequence
+
+108. Unique Paths I & II
+
+109. Minimum Path Sum
+
+110. Jump Game I & II
+
+111. Decode Ways
+
+112. Word Break
+
+113. Partition Equal Subset Sum
+
+114. Target Sum
+
+115. Ones and Zeroes
+
+116. Maximum Product Subarray
+
+117. Best Time to Buy/Sell Stock (all variants)
+
+118. Palindromic Substrings
+
+119. Longest Palindromic Subsequence
+
+120. Delete Operation for Two Strings
+
+
+
+
+
+Hard:
+
+121. Edit Distance
+
+122. Regular Expression Matching
+
+123. Wildcard Matching
+
+124. Distinct Subsequences
+
+125. Interleaving String
+
+126. Scramble String
+
+127. Burst Balloons
+
+128. Maximum Profit in Job Scheduling
+
+129. Minimum Difficulty of Job Schedule
+
+130. Stone Game III, IV, V
+
+131. Dungeon Game
+
+132. Cherry Pickup I & II
+
+133. Longest Valid Parentheses
+
+134. Maximal Rectangle
+
+135. Best Time to Buy/Sell Stock IV
+
+136. Frog Jump
+
+137. Russian Doll Envelopes
+
+138. Count Different Palindromic Subsequences
+
+
+
+
+
+
+
+7. Backtracking & Recursion (10-15%)
+
+Subcategories
+
+Permutations & combinations
+Subsets
+N-Queens variants
+Sudoku solver
+Word search
+Key Questions
+
+Medium:
+
+139. Permutations I & II
+
+140. Combinations
+
+141. Combination Sum I, II, III
+
+142. Subsets I & II
+
+143. Palindrome Partitioning
+
+144. Letter Combinations of Phone Number
+
+145. Generate Parentheses
+
+146. Word Search
+
+147. Restore IP Addresses
+
+148. Beautiful Arrangement
+
+
+
+
+
+
+
+Hard:
+
+149. N-Queens I & II
+
+150. Sudoku Solver
+
+151. Word Search II (Trie + Backtracking)
+
+152. Remove Invalid Parentheses
+
+153. Expression Add Operators
+
+154. Palindrome Partitioning II
+
+155. Word Break II
+
+156. Concatenated Words
+
+
+
+8. Heaps & Priority Queues (8-12%)
+
+Subcategories
+
+Top K problems
+Median finding
+Merge operations
+Scheduling problems
+Key Questions
+
+Medium:
+157. Kth Largest Element in Array
+
+158. Top K Frequent Elements
+
+159. K Closest Points to Origin
+
+160. Find K Pairs with Smallest Sums
+
+161. Kth Smallest Element in Sorted Matrix
+
+162. Reorganize String
+
+163. Task Scheduler
+
+164. Meeting Rooms II
+
+165. Ugly Number II
+
+
+
+
+
+Hard:
+
+166. Merge K Sorted Lists
+
+167. Find Median from Data Stream
+
+168. Sliding Window Median
+
+169. IPO (maximize capital)
+
+170. Smallest Range Covering K Lists
+
+171. Employee Free Time
+
+172. The Skyline Problem
+
+173. Trapping Rain Water II
+
+
+
+9. Binary Search (8-12%)
+
+Subcategories
+
+Search in sorted arrays
+Search in rotated arrays
+Binary search on answer
+Matrix search
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+174. Search in Rotated Sorted Array I & II
+
+175. Find First and Last Position
+
+176. Search a 2D Matrix I & II
+
+177. Find Peak Element
+
+178. Find Minimum in Rotated Sorted Array
+
+179. Kth Smallest Element in Sorted Matrix
+
+180. Split Array Largest Sum
+
+181. Capacity to Ship Packages
+
+182. Koko Eating Bananas
+
+183. Minimum Number of Days to Make Bouquets
+
+
+
+Hard:
+184. Median of Two Sorted Arrays
+
+185. Find K-th Smallest Pair Distance
+
+186. Minimize Max Distance to Gas Station
+
+187. Aggressive Cows (classic problem)
+
+188. Allocate Books (classic problem)
+
+189. Count of Smaller Numbers After Self
+
+
+
+10. Tries (Prefix Trees) (5-8%)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+190. Implement Trie
+
+191. Design Add and Search Words
+
+192. Replace Words
+
+193. Map Sum Pairs
+
+194. Longest Word in Dictionary
+
+195. Maximum XOR of Two Numbers
+
+Hard:
+
+
+
+
+
+
+
+196. Word Search II
+
+197. Palindrome Pairs
+
+198. Stream of Characters
+
+199. Design Search Autocomplete System
+
+200. Concatenated Words
+
+
+
+11. Bit Manipulation (5-8%)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+201. Single Number I, II, III
+
+202. Number of 1 Bits
+
+203. Counting Bits
+
+204. Reverse Bits
+
+205. Power of Two/Four
+
+206. Sum of Two Integers
+
+207. Bitwise AND of Numbers Range
+
+208. Maximum XOR of Two Numbers
+
+Hard:
+
+
+
+
+
+
+
+209. Maximum XOR with Element from Array
+
+210. Minimum XOR Sum of Two Arrays
+
+211. Find XOR Sum of All Pairs
+
+
+
+12. Greedy Algorithms (8-12%)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+212. Jump Game I & II
+
+213. Gas Station
+
+214. Partition Labels
+
+215. Non-overlapping Intervals
+
+216. Minimum Number of Arrows
+
+217. Queue Reconstruction by Height
+
+218. Task Scheduler
+
+219. Reorganize String
+
+220. Advantage Shuffle
+
+Hard:
+
+
+
+
+
+
+
+221. Candy
+
+222. Create Maximum Number
+
+223. Patching Array
+
+224. Remove Duplicate Letters
+
+225. Smallest Range II
+
+
+
+13. Stacks & Queues (8-10%)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+226. Valid Parentheses (variations)
+
+227. Min Stack / Max Stack
+
+228. Evaluate Reverse Polish Notation
+
+229. Basic Calculator I & II
+
+230. Decode String
+
+231. Daily Temperatures
+
+232. Next Greater Element I, II, III
+
+233. Asteroid Collision
+
+234. Remove K Digits
+
+235. Online Stock Span
+
+Hard:
+
+
+
+
+
+
+
+236. Basic Calculator III
+
+237. Largest Rectangle in Histogram
+
+238. Maximal Rectangle
+
+239. Trapping Rain Water (stack approach)
+
+240. Longest Valid Parentheses
+
+
+
+14. Sorting & Searching (5-8%)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+241. Sort Colors (Dutch National Flag)
+
+242. Merge Intervals
+
+243. Meeting Rooms I & II
+
+244. Largest Number
+
+245. Wiggle Sort I & II
+
+246. Kth Largest Element
+
+247. Find K Closest Elements
+
+Hard:
+
+
+
+
+
+
+
+248. Count of Range Sum
+
+249. Count of Smaller Numbers After Self
+
+250. Reverse Pairs
+
+251. Maximum Gap (bucket sort)
+
+
+
+15. Math & Geometry (5-8%)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+252. Pow(x, n)
+
+253. Sqrt(x)
+
+254. Divide Two Integers
+
+255. Multiply Strings
+
+256. Fraction to Recurring Decimal
+
+257. Happy Number
+
+258. Ugly Number I, II, III
+
+259. Perfect Squares
+
+260. Integer Break
+
+Hard:
+
+
+
+
+
+
+
+261. Max Points on a Line
+
+262. Rectangle Area II
+
+263. The Skyline Problem
+
+264. Erect the Fence
+
+265. Valid Square
+
+
+
+16. Design Problems (10-15% for L6)
+
+Key Questions
+
+Medium:
+
+
+
+
+
+
+
+266. LRU Cache
+
+267. LFU Cache
+
+268. Design HashMap
+
+269. Design HashSet
+
+270. Min Stack
+
+271. Implement Queue using Stacks
+
+272. Design Circular Queue
+
+273. Design Hit Counter
+
+274. Logger Rate Limiter
+
+275. Design Tic-Tac-Toe
+
+276. Design Snake Game
+
+277. Time Based Key-Value Store
+
+Hard:
+
+
+
+
+
+
+
+278. Design In-Memory File System
+
+279. Design Search Autocomplete System
+
+280. Design Twitter
+
+281. All O'one Data Structure
+
+282. Insert Delete GetRandom O(1) - Duplicates
+
+283. Design Excel Sum Formula
+
+284. Design Phone Directory
+
+285. Design Log Storage System
+
+
+
+17. Advanced Data Structures (5-8%)
+
+Segment Trees, Fenwick Trees, etc.
+
+Hard:
+
+
+
+
+
+
+
+286. Range Sum Query - Mutable
+
+287. Count of Smaller Numbers After Self
+
+288. Reverse Pairs
+
+289. Count of Range Sum
+
+290. The Skyline Problem
+
+291. Falling Squares
+
+292. My Calendar I, II, III
+
+
+
+L6-Specific Focus Areas
+
+High Priority (Practice Most)
+
+Dynamic Programming (25%) - Must be very strong
+Graphs (20%) - All traversal types, advanced algorithms
+System Design with DSA (15%) - Design + implement core components
+Trees (15%) - Complex tree problems
+Arrays/Strings (15%) - Optimization focus
+
+Medium Priority
+Heaps (10%)
+Backtracking (10%)
+Binary Search (10%)
+Lower Priority (but still important)
+
+Tries, Bit Manipulation, Greedy (5% each)
+
+
+L6 Interview Patterns
+
+Expect These Twists:
+
+Follow-up questions: "Now optimize for space", "Handle streaming data"
+Scale considerations: "What if input is 1TB?"
+Multiple constraints: "Minimize both time and space"
+Real-world context: "How would you monitor this in production?"
+Trade-off discussions: Explain why you chose approach X over Y
+Evaluation Criteria:
+
+✅ Optimal solution (time & space)
+✅ Clean, production-quality code
+✅ Edge case handling
+✅ Clear communication
+✅ Multiple approaches discussed
+✅ System-level thinking
+
+
+Preparation Strategy (12 weeks)
+
+Weeks 1-4: Foundation
+3-4 problems/day (Medium focus)
+Cover all categories once
+Build pattern recognition
+
+
+Weeks 5-8: Depth
+2-3 Hard problems/day
+Focus on weak areas
+Time yourself (45 min/problem)
+Practice on whiteboard/Google Doc
+Weeks 9-12: Mock Interviews
+
+
+Full interview simulations
+Pramp, Interviewing.io
+Practice explaining while coding
+Review mistakes thoroughly
+
+Daily Routine:
+Morning: 1 Hard problem (fresh mind)
+Afternoon: 1-2 Medium problems
+Evening: Review patterns, watch solutions
+
+
+Top 50 Must-Do Problems for L6
+1. Two Sum / 3Sum / 4Sum
+
+2. Longest Substring Without Repeating
+
+3. Median of Two Sorted Arrays
+
+4. Trapping Rain Water
+
+5. Regular Expression Matching
+
+6. Merge K Sorted Lists
+
+7. LRU Cache
+
+8. Word Ladder II
+
+9. Binary Tree Maximum Path Sum
+
+10. Serialize/Deserialize Binary Tree
+
+11. Number of Islands
+
+12. Course Schedule II
+
+13. Alien Dictionary
+
+14. Word Search II
+
+15. Longest Increasing Subsequence
+
+16. Edit Distance
+
+17. Burst Balloons
+
+18. Wildcard Matching
+
+19. Palindrome Partitioning II
+
+20. Distinct Subsequences
+
+21. N-Queens
+
+22. Sudoku Solver
+
+23. Find Median from Data Stream
+
+24. Sliding Window Maximum
+
+25. The Skyline Problem
+
+26. Design Twitter
+
+27. All O'one Data Structure
+
+28. Maximum Gap
+
+29. Count of Smaller Numbers After Self
+
+30. Reverse Pairs
+
+31. Range Sum Query - Mutable
+
+32. Minimum Window Substring
+
+33. Longest Consecutive Sequence
+
+34. First Missing Positive
+
+35. Jump Game II
+
+36. Gas Station
+
+37. Candy
+
+38. Word Break II
+
+39. Palindrome Pairs
+
+40. Maximum XOR of Two Numbers
+
+41. Kth Smallest in Sorted Matrix
+
+42. Split Array Largest Sum
+
+43. Russian Doll Envelopes
+
+44. Frog Jump
+
+45. Cherry Pickup
+
+46. Minimum Difficulty of Job Schedule
+
+47. Critical Connections in Network
+
+48. Swim in Rising Water
+
+49. Shortest Path Visiting All Nodes
+
+50. Design Search Autocomplete System
+
+
+
+Resources
+
+LeetCode: Premium (company-specific questions)
+Books: "Cracking the Coding Interview", "Elements of Programming Interviews"
+YouTube: NeetCode, Back to Back SWE, Tushar Roy
+Practice Platforms: LeetCode, HackerRank, CodeSignal
+Focus on understanding patterns rather than memorizing solutions. At L6, interviewers expect optimal solutions with clear trade-off discussions.
