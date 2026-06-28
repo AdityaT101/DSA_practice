@@ -463,11 +463,6 @@ Medium:
 148. Beautiful Arrangement
 
 
-
-
-
-
-
 Hard:
 
 149. N-Queens I & II

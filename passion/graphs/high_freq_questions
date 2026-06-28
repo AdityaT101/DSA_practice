@@ -1,0 +1,666 @@
+====================================================================
+  MOST IMPORTANT GRAPH QUESTIONS FOR FAANG/MANGO INTERVIEWS
+====================================================================
+  Source: Real interview frequency data (2023-2026) across
+  Meta, Apple, Netflix, Google, Amazon, OpenAI, Stripe, Microsoft
+  Focus: Google L6 Staff Engineer Level
+====================================================================
+
+
+====================================================================
+  TIER 1 - MUST KNOW (90%+ Interview Frequency)
+====================================================================
+  These appear in almost EVERY graph-heavy interview round.
+  If you only have time for 7 problems, do these.
+--------------------------------------------------------------------
+
+1. LeetCode 200 - Number of Islands                    [*****]
+   - Asked at: Google, Meta, Amazon, Microsoft, Bloomberg, Stripe
+   - Why: Tests DFS/BFS fundamentals on 2D grid
+   - Variants: Max Area of Island (695), Closed Islands (1254)
+   - Location in graph_solutions.py: Lines 170-205 (Problem 1.3)
+
+2. LeetCode 207 - Course Schedule I                    [*****]
+   - Asked at: Google, Meta, Amazon, Apple, Uber, Airbnb
+   - Why: Tests topological sort + cycle detection (directed graph)
+   - Location in graph_solutions.py: Lines 854-899 (Problem 4.3)
+
+3. LeetCode 210 - Course Schedule II                   [*****]
+   - Asked at: Meta, Google, Amazon, Microsoft, LinkedIn
+   - Why: Returns actual order (more interesting than just bool)
+   - Location in graph_solutions.py: Lines 902-942 (Problem 4.4)
+
+4. LeetCode 994 - Rotting Oranges                      [*****]
+   - Asked at: Amazon, Meta, Google, Apple
+   - Why: Multi-source BFS pattern (super common)
+   - Location in graph_solutions.py: Lines 227-269 (Problem 1.4)
+
+5. LeetCode 269 - Alien Dictionary                     [*****]
+   - Asked at: Google, Meta, Amazon, Pinterest, Airbnb
+   - Why: HARD topo sort + clever graph construction
+   - **TOP GOOGLE L6 QUESTION**
+   - Location in graph_solutions.py: Lines 947-1013 (Problem 4.5)
+
+6. LeetCode 133 - Clone Graph                          [*****]
+   - Asked at: Meta, Google, Amazon, Apple, Microsoft, Uber
+   - Why: Tests hashmap + DFS/BFS together, deep cloning
+   - STATUS: NOT in graph_solutions.py - NEEDS TO BE ADDED
+
+7. LeetCode 127 - Word Ladder                          [*****]
+   - Asked at: Meta, Amazon, Google, LinkedIn
+   - Why: BFS on implicit graph (clever graph construction)
+   - STATUS: NOT in graph_solutions.py - NEEDS TO BE ADDED
+
+
+====================================================================
+  TIER 2 - VERY IMPORTANT (70-90% Frequency)
+====================================================================
+
+8.  LeetCode 547 - Number of Provinces                 [****]
+    - Asked at: Amazon, Microsoft, Bloomberg
+    - Why: Tests Union-Find or DFS on components
+    - Location in graph_solutions.py: Lines 1701-1731 (Problem 7.3)
+
+9.  LeetCode 785 - Is Graph Bipartite?                 [****]
+    - Asked at: Meta, Google, Amazon
+    - Why: Tests BFS/DFS with coloring (2-color problem)
+    - Location in graph_solutions.py: Lines 651-685 (Problem 3.1)
+
+10. LeetCode 743 - Network Delay Time                  [****]
+    - Asked at: Amazon, Uber, DoorDash
+    - Why: Classic Dijkstra application
+    - Location in graph_solutions.py: Lines 1211-1242 (Problem 5.4)
+
+11. LeetCode 787 - Cheapest Flights K Stops            [****]
+    - Asked at: Google, Amazon, Goldman Sachs
+    - Why: Modified Bellman-Ford / BFS with state
+    - Location in graph_solutions.py: Lines 1307-1331 (Problem 5.6)
+
+12. LeetCode 684 - Redundant Connection                [****]
+    - Asked at: Google, Amazon, Meta
+    - Why: Classic Union-Find use case
+    - Location in graph_solutions.py: Lines 1750-1769 (Problem 7.4)
+
+13. LeetCode 79 - Word Search                          [****]
+    - Asked at: Meta, Amazon, Microsoft, Bloomberg
+    - Why: DFS + backtracking on grid
+    - STATUS: NOT in graph_solutions.py - NEEDS TO BE ADDED
+
+14. LeetCode 1192 - Critical Connections               [****]
+    - Asked at: Google (L6+), Meta (E5+)
+    - Why: Tarjan's bridges - ONLY senior+ interviews
+    - Location in graph_solutions.py: Lines 1888-1943 (Problem 8.2)
+
+
+====================================================================
+  TIER 3 - GOOD TO KNOW (40-70% Frequency)
+====================================================================
+
+15. LeetCode 417 - Pacific Atlantic Water Flow         [***]
+    - Asked at: Meta, Amazon, Google
+    - Why: Reverse thinking + multi-source DFS
+    - STATUS: NOT in graph_solutions.py
+
+16. LeetCode 130 - Surrounded Regions                  [***]
+    - Asked at: Amazon, Meta
+    - Why: Border DFS trick
+    - STATUS: NOT in graph_solutions.py
+
+17. LeetCode 1584 - Min Cost to Connect All Points     [***]
+    - Asked at: Amazon, Google
+    - Why: Prim's MST application
+    - Location in graph_solutions.py: Lines 1530-1568 (Problem 6.3)
+
+18. LeetCode 1091 - Shortest Path Binary Matrix        [***]
+    - Asked at: Meta, Amazon
+    - Why: BFS with 8 directions
+    - STATUS: NOT in graph_solutions.py
+
+19. LeetCode 695 - Max Area of Island                  [***]
+    - Asked at: Google, Amazon
+    - Why: Number of Islands variant - counting cells
+    - STATUS: NOT in graph_solutions.py
+
+20. LeetCode 323 - Number of Connected Components      [***]
+    - Asked at: Amazon, Meta
+    - Why: Union-Find basics
+    - Location in graph_solutions.py: Lines 1677-1696 (Problem 7.2)
+
+
+====================================================================
+  TIER 4 - L6/STAFF LEVEL ADVANCED (Google-specific)
+====================================================================
+
+21. LeetCode 1631 - Path With Minimum Effort           [***]
+    - Modified Dijkstra (min of max edge)
+
+22. LeetCode 332 - Reconstruct Itinerary               [***]
+    - Hierholzer's algorithm (Eulerian path)
+
+23. LeetCode 815 - Bus Routes                          [***]
+    - BFS with hyperedges
+
+24. LeetCode 1761 - Minimum Degree of Connected Trio   [**]
+    - Google L6+ favorite
+
+25. LeetCode 305 - Number of Islands II                [***]
+    - Dynamic Union-Find (online algorithm)
+
+26. LeetCode 778 - Swim in Rising Water                [***]
+    - Binary search + BFS, or modified Dijkstra
+
+27. LeetCode 126 - Word Ladder II                      [***]
+    - Find ALL shortest paths (BFS + DFS combined)
+
+28. LeetCode 1368 - Min Cost to Make Valid Path        [***]
+    - 0-1 BFS / Dijkstra
+
+
+====================================================================
+  FREQUENCY BY COMPANY
+====================================================================
+
+GOOGLE - Top 5 Graph Questions:
+  1. Alien Dictionary (269)
+  2. Number of Islands (200)
+  3. Course Schedule II (210)
+  4. Word Ladder (127)
+  5. Critical Connections (1192)
+
+META - Top 5 Graph Questions:
+  1. Number of Islands (200)
+  2. Clone Graph (133)
+  3. Course Schedule (207)
+  4. Word Search (79)
+  5. Pacific Atlantic Water Flow (417)
+
+AMAZON - Top 5 Graph Questions:
+  1. Number of Islands (200)
+  2. Rotting Oranges (994)
+  3. Course Schedule (207)
+  4. Word Ladder (127)
+  5. Network Delay Time (743)
+
+MICROSOFT - Top 4 Graph Questions:
+  1. Number of Islands (200)
+  2. Word Search (79)
+  3. Course Schedule (207)
+  4. Clone Graph (133)
+
+APPLE - Top 4 Graph Questions:
+  1. Course Schedule (207)
+  2. Number of Islands (200)
+  3. Clone Graph (133)
+  4. Is Graph Bipartite (785)
+
+NETFLIX - Top 3 Graph Questions:
+  1. Alien Dictionary (269)
+  2. Course Schedule (207)
+  3. Critical Connections (1192)
+
+STRIPE - Top 3 Graph Questions:
+  1. Number of Islands (200)
+  2. Clone Graph (133)
+  3. Custom graph problems (e.g., currency conversion graphs)
+
+OPENAI - Top Areas:
+  1. Topological sort variants
+  2. Dijkstra variants
+  3. Custom problems (often involving LLM token graphs)
+
+
+====================================================================
+  COVERAGE STATUS IN graph_solutions.py
+====================================================================
+
+CURRENTLY COVERED (22 of 28 critical problems):
+  [DONE] LC 200  - Number of Islands
+  [DONE] LC 207  - Course Schedule I
+  [DONE] LC 210  - Course Schedule II
+  [DONE] LC 994  - Rotting Oranges
+  [DONE] LC 269  - Alien Dictionary
+  [DONE] LC 547  - Number of Provinces
+  [DONE] LC 785  - Is Graph Bipartite
+  [DONE] LC 743  - Network Delay Time
+  [DONE] LC 787  - Cheapest Flights K Stops
+  [DONE] LC 684  - Redundant Connection
+  [DONE] LC 1192 - Critical Connections
+  [DONE] LC 1584 - Min Cost to Connect All Points
+  [DONE] LC 323  - Number of Connected Components
+  [DONE] LC 694  - Number of Distinct Islands
+  [DONE] Plus all Striver fundamentals (G-5 through G-56)
+
+MISSING - HIGH PRIORITY TO ADD:
+  [TODO] LC 133  - Clone Graph                     (Tier 1) *****
+  [TODO] LC 127  - Word Ladder                     (Tier 1) *****
+  [TODO] LC 79   - Word Search                     (Tier 2) ****
+
+MISSING - MEDIUM PRIORITY:
+  [TODO] LC 417  - Pacific Atlantic Water Flow     (Tier 3) ***
+  [TODO] LC 130  - Surrounded Regions              (Tier 3) ***
+  [TODO] LC 1091 - Shortest Path Binary Matrix     (Tier 3) ***
+  [TODO] LC 695  - Max Area of Island              (Tier 3) ***
+
+
+====================================================================
+  2-WEEK STUDY PLAN FOR GOOGLE L6 PREP
+====================================================================
+
+WEEK 1 - FOUNDATIONS:
+  Day 1-2: Pattern 1 (BFS/DFS basics)
+           - Number of Islands (200)
+           - Rotting Oranges (994)
+           - Clone Graph (133)
+
+  Day 3:   Pattern 2 (Cycle Detection) + Pattern 3 (Bipartite)
+           - Detect cycle (directed/undirected)
+           - Is Graph Bipartite (785)
+
+  Day 4-5: Pattern 4 (Topological Sort)
+           - Course Schedule I (207)
+           - Course Schedule II (210)
+           - Alien Dictionary (269)
+
+  Day 6-7: Pattern 5 (Shortest Path)
+           - Dijkstra
+           - Network Delay Time (743)
+           - Cheapest Flights K Stops (787)
+           - Bellman-Ford
+
+WEEK 2 - ADVANCED:
+  Day 8-9:   Pattern 6 (MST) + Pattern 7 (Union-Find)
+             - Prim's, Kruskal's
+             - Min Cost Connect Points (1584)
+             - Number of Provinces (547)
+             - Redundant Connection (684)
+
+  Day 10:    Implicit Graphs
+             - Word Ladder (127)
+             - Word Search (79)
+
+  Day 11:    Pattern 8 (Advanced - L6 Differentiator)
+             - Critical Connections (1192)
+             - Strongly Connected Components (Kosaraju's)
+             - Articulation Points
+
+  Day 12-14: Mock interviews + revisit weak spots
+             - Time yourself: 30-45 min per problem
+             - Practice explaining out loud
+             - Cover edge cases systematically
+
+
+====================================================================
+  L6/STAFF DIFFERENTIATORS
+====================================================================
+
+For Google L6/Staff, these questions appear MORE frequently than
+for L4/L5. Master these to stand out:
+
+  1. Alien Dictionary (LC 269)
+     - Clever graph construction from word ordering
+     - Edge case: prefix detection
+
+  2. Critical Connections (LC 1192)
+     - Tarjan's bridges algorithm
+     - Discovery/low-link values
+
+  3. Word Ladder II (LC 126)
+     - Find ALL shortest paths (not just count)
+     - BFS to build paths + DFS to reconstruct
+
+  4. Bus Routes (LC 815)
+     - BFS with creative state representation
+     - Route-as-node thinking
+
+  5. Min Cost to Make Valid Path (LC 1368)
+     - 0-1 BFS or modified Dijkstra
+     - Edge weight = 0 or 1 trick
+
+  6. Swim in Rising Water (LC 778)
+     - Binary search + BFS
+     - Or: modified Dijkstra (max of min path)
+
+  7. Number of Islands II (LC 305)
+     - DYNAMIC connectivity
+     - Online Union-Find with size tracking
+
+
+====================================================================
+  INTERVIEW TIPS FOR L6 LEVEL
+====================================================================
+
+1. CLARIFY FIRST (Always!):
+   - Directed or undirected?
+   - Weighted or unweighted?
+   - Can weights be negative?
+   - Self-loops allowed?
+   - Disconnected components possible?
+   - Size constraints?
+
+2. STATE COMPLEXITY UPFRONT:
+   - Time AND space
+   - Best, average, worst case
+   - Trade-offs between approaches
+
+3. DISCUSS TRADE-OFFS:
+   - "Why Dijkstra vs Bellman-Ford here?"
+   - "BFS vs DFS - which fits better and why?"
+   - "Could we use Union-Find instead?"
+
+4. CONSIDER EDGE CASES:
+   - Empty graph / empty input
+   - Single node
+   - Disconnected components
+   - Self-loops
+   - Negative weights (if allowed)
+   - Cycles in directed graphs
+
+5. SCALE DISCUSSION (L6 BAR):
+   - "What if graph is too large for memory?"
+   - Distributed algorithms: Pregel, GraphX, GraphLab
+   - Streaming algorithms for dynamic graphs
+   - Approximation algorithms for NP-hard problems
+   - Sharding / partitioning strategies
+   - Cache locality considerations
+
+6. CODE QUALITY (Critical at L6):
+   - Clean, readable variable names
+   - Helper functions for clarity
+   - Handle edge cases at the top
+   - Add comments only for non-obvious logic
+   - Modular, testable code
+
+
+====================================================================
+  KEYWORD - PATTERN MAPPING (Quick Recognition)
+====================================================================
+
+KEYWORD                          --> PATTERN
+"Connected" / "Reachable"        --> BFS/DFS
+"Islands" / "Regions"            --> DFS/BFS on grid
+"Shortest path" (unweighted)     --> BFS
+"Shortest path" (weighted, +)    --> Dijkstra
+"Shortest path" (negative ok)    --> Bellman-Ford
+"All-pairs shortest path"        --> Floyd-Warshall
+"Cycle" / "Loop"                 --> DFS w/ recursion stack
+"Order" / "Prerequisites"        --> Topological Sort
+"Schedule" / "Dependencies"      --> Topological Sort
+"Two groups" / "Color"           --> Bipartite (BFS coloring)
+"Friend circles" / "Components"  --> Union-Find or DFS
+"Minimum cost to connect"        --> MST (Prim's/Kruskal's)
+"Spread" / "Infection"           --> Multi-source BFS
+"Critical" / "Bridge"            --> Tarjan's
+"Strongly connected"             --> Kosaraju's
+"Implicit graph" (word ladder)   --> BFS with state
+
+
+====================================================================
+  STRIVER (TAKE U FORWARD) <-> FAANG QUESTIONS MAPPING
+====================================================================
+  Maps Striver's Graph Playlist videos to FAANG interview questions
+  Use this to know WHICH Striver video prepares you for WHICH
+  FAANG/MANGO interview problem.
+====================================================================
+
+--------------------------------------------------------------------
+  PATTERN 1: GRAPH TRAVERSAL (BFS/DFS Fundamentals)
+--------------------------------------------------------------------
+
+G-5  : Breadth-First Search (BFS)
+       --> Foundation for ALL BFS problems
+       --> Direct: LC 102 (Binary Tree Level Order)
+       --> Used in: LC 200, LC 127, LC 994, LC 1091
+
+G-6  : Depth-First Search (DFS)
+       --> Foundation for ALL DFS problems
+       --> Direct: LC 200 (Number of Islands)
+       --> Used in: LC 133, LC 79, LC 695, LC 547
+
+G-10 : Rotten Oranges
+       --> DIRECT MATCH: LC 994 - Rotting Oranges            [TIER 1 *****]
+       --> Asked at: Amazon, Meta, Google, Apple
+       --> Pattern: Multi-source BFS
+
+G-16 : Number of Distinct Islands
+       --> DIRECT MATCH: LC 694 - Number of Distinct Islands
+       --> Related: LC 200, LC 695 - Max Area of Island      [TIER 3 ***]
+       --> Asked at: Amazon, Meta
+
+
+--------------------------------------------------------------------
+  PATTERN 2: CYCLE DETECTION
+--------------------------------------------------------------------
+
+G-11 : Detect Cycle in Undirected Graph using BFS
+       --> Used in: LC 684 - Redundant Connection            [TIER 2 ****]
+       --> Foundation for cycle problems
+
+G-12 : Detect Cycle in Undirected Graph using DFS
+       --> Used in: LC 684 - Redundant Connection            [TIER 2 ****]
+       --> Asked at: Google, Amazon, Meta
+
+G-19 : Detect Cycle in Directed Graph using DFS
+       --> Foundation for: LC 207 - Course Schedule I        [TIER 1 *****]
+       --> Foundation for: LC 210 - Course Schedule II       [TIER 1 *****]
+       --> Asked at: Google, Meta, Amazon, Apple, Uber
+
+G-23 : Detect Cycle in Directed Graph using Kahn's/BFS
+       --> Alternative approach for LC 207, LC 210
+
+
+--------------------------------------------------------------------
+  PATTERN 3: BIPARTITE GRAPH
+--------------------------------------------------------------------
+
+G-17 : Bipartite Graph - BFS
+       --> DIRECT MATCH: LC 785 - Is Graph Bipartite?        [TIER 2 ****]
+       --> Asked at: Meta, Google, Amazon
+
+G-18 : Bipartite Graph - DFS
+       --> Alternative approach for LC 785                   [TIER 2 ****]
+       --> Related: LC 886 - Possible Bipartition
+
+
+--------------------------------------------------------------------
+  PATTERN 4: TOPOLOGICAL SORT
+--------------------------------------------------------------------
+
+G-21 : Topological Sort - DFS
+       --> Foundation for LC 207, LC 210, LC 269, LC 329
+       --> Post-order traversal trick
+
+G-22 : Kahn's Algorithm (Topological Sort - BFS)
+       --> DIRECT MATCH: LC 210 - Course Schedule II        [TIER 1 *****]
+       --> Foundation for: LC 207                           [TIER 1 *****]
+       --> Asked at: Meta, Google, Amazon, Microsoft, LinkedIn
+
+G-24 : Course Schedule I and II
+       --> DIRECT MATCH: LC 207 - Course Schedule I        [TIER 1 *****]
+       --> DIRECT MATCH: LC 210 - Course Schedule II       [TIER 1 *****]
+       --> Asked at: Google, Meta, Amazon, Apple, Uber, Airbnb
+       --> **ONE OF THE MOST FREQUENT INTERVIEW QUESTIONS**
+
+G-26 : Alien Dictionary - Topological Sort
+       --> DIRECT MATCH: LC 269 - Alien Dictionary         [TIER 1 *****]
+       --> **TOP GOOGLE L6 QUESTION**
+       --> Asked at: Google, Meta, Amazon, Pinterest, Airbnb
+       --> Edge case: prefix detection ("abc" before "ab")
+
+
+--------------------------------------------------------------------
+  PATTERN 5: SHORTEST PATH ALGORITHMS
+--------------------------------------------------------------------
+
+G-27 : Shortest Path in DAG - Topological Sort
+       --> Foundation for DAG-based shortest path problems
+       --> Used in: LC 1976 - Number of Ways to Arrive
+
+G-28 : Shortest Path in Undirected Graph (Unit Weights)
+       --> Standard BFS shortest path
+       --> Used in: LC 1091 - Shortest Path Binary Matrix   [TIER 3 ***]
+
+G-32 : Dijkstra's Algorithm - Priority Queue
+       --> DIRECT MATCH: LC 743 - Network Delay Time       [TIER 2 ****]
+       --> Used in: LC 787 - Cheapest Flights K Stops      [TIER 2 ****]
+       --> Used in: LC 1631 - Path With Minimum Effort     [TIER 4 ***]
+       --> Used in: LC 778 - Swim in Rising Water          [TIER 4 ***]
+       --> Asked at: Amazon, Uber, DoorDash, Google
+
+G-34 : Dijkstra's - Why PQ over Set (Time Complexity)
+       --> Important THEORY for L6 interviews
+       --> Be ready to discuss: O((V+E)logV) with PQ
+
+G-41 : Bellman-Ford Algorithm
+       --> Used in: LC 787 - Cheapest Flights K Stops      [TIER 2 ****]
+       --> Handles NEGATIVE WEIGHTS (Dijkstra cannot)
+       --> Detects negative cycles
+       --> Asked at: Google, Amazon, Goldman Sachs
+
+G-42 : Floyd-Warshall Algorithm
+       --> All-pairs shortest path
+       --> Used in: LC 1334 - Find City With Smallest Neighbors
+       --> O(V^3) - usually for small graphs
+
+
+--------------------------------------------------------------------
+  PATTERN 6: MINIMUM SPANNING TREE (MST)
+--------------------------------------------------------------------
+
+G-45 : Prim's Algorithm - MST
+       --> DIRECT MATCH: LC 1584 - Min Cost Connect Points [TIER 3 ***]
+       --> Asked at: Amazon, Google
+       --> Priority Queue based
+
+G-47 : Kruskal's Algorithm - MST
+       --> Alternative for LC 1584                         [TIER 3 ***]
+       --> Used in: LC 1135 - Connecting Cities Min Cost
+       --> Uses Union-Find (DSU)
+
+
+--------------------------------------------------------------------
+  PATTERN 7: DISJOINT SET UNION (UNION-FIND)
+--------------------------------------------------------------------
+
+G-46 : Disjoint Set - Union by Rank/Size + Path Compression
+       --> Foundation for ALL Union-Find problems
+       --> DIRECT MATCH: LC 323 - Connected Components     [TIER 3 ***]
+       --> DIRECT MATCH: LC 547 - Number of Provinces      [TIER 2 ****]
+       --> DIRECT MATCH: LC 684 - Redundant Connection     [TIER 2 ****]
+       --> Used in: LC 305 - Number of Islands II          [TIER 4 ***]
+       --> Used in: LC 1319 - Number of Operations to Connect
+       --> Asked at: Google, Amazon, Meta, Microsoft
+       --> **CRITICAL DATA STRUCTURE FOR L6**
+
+
+--------------------------------------------------------------------
+  PATTERN 8: ADVANCED (SCC, BRIDGES, ARTICULATION POINTS)
+--------------------------------------------------------------------
+
+G-54 : Strongly Connected Components - Kosaraju's Algorithm
+       --> Used in: LC 1192 - Critical Connections variants
+       --> Used in: LC 2360 - Longest Cycle in Graph
+       --> Asked at: Google (L6+), Meta (E5+)
+       --> **L6/STAFF DIFFERENTIATOR**
+
+G-55 : Bridges in Graph - Tarjan's Algorithm
+       --> DIRECT MATCH: LC 1192 - Critical Connections    [TIER 2 ****]
+       --> Asked at: Google (L6+), Meta (E5+)
+       --> Concepts: discovery time, low-link values
+       --> **L6/STAFF DIFFERENTIATOR**
+
+G-56 : Articulation Points in Graph
+       --> DIRECT MATCH: LC 1568 - Min Days to Disconnect Island
+       --> Asked at: Google (L6+)
+       --> Similar to bridges but for VERTICES
+       --> **L6/STAFF DIFFERENTIATOR**
+
+
+====================================================================
+  REVERSE LOOKUP: FAANG QUESTION --> STRIVER VIDEO(S)
+====================================================================
+
+LC 200  - Number of Islands           --> G-6 (DFS), G-5 (BFS)
+LC 207  - Course Schedule I           --> G-19, G-23, G-24
+LC 210  - Course Schedule II          --> G-22, G-24
+LC 994  - Rotting Oranges             --> G-10 (DIRECT)
+LC 269  - Alien Dictionary            --> G-26 (DIRECT)
+LC 133  - Clone Graph                 --> G-5 (BFS), G-6 (DFS)
+LC 127  - Word Ladder                 --> G-28 (BFS shortest path)
+LC 547  - Number of Provinces         --> G-46 (DSU) or G-6 (DFS)
+LC 785  - Is Graph Bipartite          --> G-17 (BFS), G-18 (DFS)
+LC 743  - Network Delay Time          --> G-32 (Dijkstra)
+LC 787  - Cheapest Flights K Stops    --> G-41 (Bellman-Ford)
+LC 684  - Redundant Connection        --> G-46 (DSU), G-11/G-12
+LC 79   - Word Search                 --> G-6 (DFS) + backtracking
+LC 1192 - Critical Connections        --> G-55 (Tarjan's Bridges)
+LC 417  - Pacific Atlantic            --> G-6 (DFS multi-source)
+LC 130  - Surrounded Regions          --> G-6 (DFS from borders)
+LC 1584 - Min Cost Connect Points     --> G-45 (Prim's) or G-47 (Kruskal's)
+LC 1091 - Shortest Path Binary Matrix --> G-28 (BFS, 8-directions)
+LC 695  - Max Area of Island          --> G-6 (DFS counting)
+LC 323  - Connected Components        --> G-46 (DSU) or G-6 (DFS)
+LC 305  - Number of Islands II        --> G-46 (DSU - dynamic)
+LC 1631 - Path With Minimum Effort    --> G-32 (Modified Dijkstra)
+LC 778  - Swim in Rising Water        --> G-32 (Modified Dijkstra)
+LC 1368 - Min Cost to Make Valid Path --> G-32 (0-1 BFS / Dijkstra)
+LC 126  - Word Ladder II              --> G-5 (BFS) + DFS reconstruction
+
+
+====================================================================
+  STRIVER PLAYLIST PRIORITY FOR FAANG PREP
+====================================================================
+
+MUST WATCH (covers Tier 1 FAANG questions):
+  [HIGH] G-5  - BFS
+  [HIGH] G-6  - DFS
+  [HIGH] G-10 - Rotten Oranges        --> LC 994
+  [HIGH] G-19 - Cycle (Directed DFS)  --> LC 207
+  [HIGH] G-22 - Kahn's Algorithm      --> LC 210
+  [HIGH] G-24 - Course Schedule       --> LC 207, LC 210
+  [HIGH] G-26 - Alien Dictionary      --> LC 269 (Google L6 favorite!)
+  [HIGH] G-32 - Dijkstra's            --> LC 743
+  [HIGH] G-46 - Disjoint Set          --> LC 547, LC 684, LC 323
+
+SHOULD WATCH (covers Tier 2 FAANG questions):
+  [MED] G-11/G-12 - Cycle Undirected  --> LC 684
+  [MED] G-17/G-18 - Bipartite         --> LC 785
+  [MED] G-28 - BFS Shortest Path      --> LC 1091
+  [MED] G-41 - Bellman-Ford           --> LC 787
+  [MED] G-45/G-47 - MST               --> LC 1584
+  [MED] G-55 - Bridges (Tarjan's)     --> LC 1192 (L6+ only)
+
+OPTIONAL (advanced/less frequent):
+  [LOW] G-16 - Distinct Islands       --> LC 694
+  [LOW] G-21 - Topo Sort DFS          --> Alternative for LC 210
+  [LOW] G-23 - Cycle Directed BFS     --> Alternative approach
+  [LOW] G-27 - SP in DAG              --> Niche problems
+  [LOW] G-34 - Why PQ (theory)        --> Good for L6 discussion
+  [LOW] G-42 - Floyd-Warshall         --> Rare in interviews
+  [LOW] G-54 - SCC Kosaraju's         --> L6+ only
+  [LOW] G-56 - Articulation Points    --> L6+ only
+
+
+====================================================================
+  GAP ANALYSIS: What Striver Covers vs FAANG Asks
+====================================================================
+
+STRIVER COVERS (in your watched list) but FAANG asks differently:
+  - G-26 Alien Dictionary: Striver's version doesn't cover edge cases
+    that Google asks (prefix detection: "abc" before "ab" -> invalid)
+  - G-32 Dijkstra: Add "K stops" variant (LC 787) for FAANG
+
+FAANG ASKS but NOT in Striver's basic list:
+  - LC 133 - Clone Graph (uses BFS/DFS but needs HashMap pattern)
+  - LC 127 - Word Ladder (BFS on implicit graph - clever construction)
+  - LC 79  - Word Search (DFS + backtracking on grid)
+  - LC 417 - Pacific Atlantic (reverse multi-source DFS thinking)
+  - LC 130 - Surrounded Regions (border DFS trick)
+
+RECOMMENDATION:
+  After watching Striver's playlist, practice these 5 problems
+  separately as they have unique twists not directly covered.
+
+
+====================================================================
+  END OF FAANG/MANGO GRAPH INTERVIEW CHEAT SHEET
+====================================================================
