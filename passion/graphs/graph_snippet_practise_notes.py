@@ -868,24 +868,533 @@ f'''
 #
 # print(is_cyclic)
 
+
 #--=======================
-#--======================= Detect a cycle in a directed Graph - BFS - Kahn's Algorithm =======================
+#--======================= Detect a cycle in a directed Graph - BFS - Kahn's Algorithm - course schedule 1 and 2 =======================
 #--=======================
 
+from collections import deque
+queue = deque()
+
+# example 1 - non cyclic
 #       (5) ──→ (0) ←── (4)
 #        │               │
 #        ↓               ↓
 #       (2) ──→ (3) ──→ (1)
+# adj_dict = {
+#     0: [],
+#     1: [],
+#     2: [3],
+#     3: [1],
+#     4: [0,1],
+#     5: [0,2]
+# }
 
 
-adj_dict = {
-    0: [],
-    1: [],
-    2: [3],
-    3: [1],
-    4: [0,1],
-    5: [0,2]
-}
+# example 2 - cyclic
+#
+#     (0) ----> (1) ──→ (2) ──→ (3) ──→ (5)
+#                ↑       │
+#                │       ↓
+#                └────── (4)
+# adj_dict = {
+#     0 : [1],
+#     1: [2],
+#     2: [3],
+#     3: [5, 4],
+#     4: [2],
+#     5: []
+# }
+#
+#
+# freq = [0]*len(adj_dict)
+# linear_order_list = []
+#
+# # store the freq of all the incoming edges
+# for key, arr in adj_dict.items():
+#     for a in arr:
+#         freq[a] += 1
+#
+# # iterate through the freq list and store the elemensts with 0 frequencies in the queue
+# for index, value in enumerate(freq):
+#     if value == 0:
+#         queue.append(index)            # ✅ the NODE (index)
+#
+# while(queue):
+#       # perform BFS by popping the elements from the queue
+#       element = queue.popleft()
+#       linear_order_list.append(element)
+#
+#       # tour the neighbors for the popped elements and
+#       # lower the count from the freq list.
+#       for a in adj_dict[element]:
+#           freq[a] -= 1
+#           if freq[a] == 0:
+#               queue.append(a)
+#
+# # this is the linear ordering of the elements using BFS
+# print(linear_order_list)
+#
+# if len(adj_dict) == len(linear_order_list):
+#     print("not a cycle")
+# else:
+#     print("cyclic")
+
+
+#--=======================
+#--======================= Detect a cycle in a directed Graph - Alien Dictionary =======================
+#--=======================
+
+
+# alien = [
+#     "baa" ,
+#     "abcd" ,
+#     "abca" ,
+#     "cab" ,
+#     "cad" ,
+#     "e"
+# ]
+#
+# adj_dict = { ord(ch) - ord('a') : []  for word in alien for ch in word }
+#
+# # go through each element in the alien list, compare the 'current' and 'current+1' element
+# # and then if the letter S1 appears before S2, then draw a grpah from S2 -> S2, meaning add this graph element into the dict
+# for index in range( 0, len(alien)-1 ):
+#     w1, w2 = alien[index], alien[index+1]
+#
+#     for S1, S2 in zip(w1, w2):
+#         if S1 != S2:
+#             adj_dict[ ord(S1) - ord('a') ].append( ord(S2) - ord('a') )
+#             break;
+#
+# print( adj_dict)
+#
+# # Kahn's algorithm
+# freq = [0]*len(adj_dict)
+# linear_order_list = []
+#
+# # store the freq of all the incoming edges
+# for key, arr in adj_dict.items():
+#     for a in arr:
+#         freq[a] += 1
+#
+# # iterate through the freq list and store the elements with 0 frequencies in the queue
+# for index, value in enumerate(freq):
+#     if value == 0:
+#         queue.append(index)            # ✅ the NODE (index)
+#
+# while(queue):
+#       # perform BFS by popping the elements from the queue
+#       element = queue.popleft()
+#       linear_order_list.append(element)
+#
+#       # tour the neighbors for the popped elements and
+#       # lower the count from the freq list.
+#       for a in adj_dict[element]:
+#           freq[a] -= 1
+#           if freq[a] == 0:
+#               queue.append(a)
+#
+# linear_order_list_return = [ chr( number + ord('a') ) for number in linear_order_list ] # -> this is list comprehension
+# print(linear_order_list_return)
+
+#                  (1)
+#               /     \
+#              ↓       ↓
+#             (3) ──→ (0) ──→ (2) ──→ (4)
+#
+#   Adjacency list:
+#       1 → [0, 3]
+#       0 → [2]
+#       2 → [4]
+#       3 → [0]
+#       4 → []
+#
+#   As letters (0→a, 1→b, ...):
+#       b → [a, d]
+#       a → [c]
+#       c → [e]
+#       d → [a]
+#
+#   Valid topological order:  1 → 3 → 0 → 2 → 4   (i.e. b → d → a → c → e)
+
+
+
+#--=======================
+#--======================= Shortest Path in Directed Acyclic Graph - Topological Sort =======================
+#--=======================
+
+#           2           3           6
+#     (0) ───→ (1) ────----->(2) ─────→ (3)
+#      │                   ↗             ↑
+#      │ 1              2/               │ 1
+#      ↓               /                 │
+#     (4) ────────→ (5)--──────────------┘
+#            4
+
+# adj_dict = {
+#     0: [[1, 2], [4, 1]],
+#     1: [[2, 3]],
+#     2: [[3, 6]],
+#     3: [],
+#     4: [[2, 2], [5, 4]],
+#     5: [[3, 1]]
+# }
+#
+# visited = [0]*6
+# dist_array = [ float('inf') ]*6
+# dist_array[0] = 0
+#
+# stack = []
+#
+# # --===============================
+# # step 1 -> perform the topo sort ( using DFS )
+#
+# def DFS(element):
+#     # when entering the DFS recursion logic, mark each visited element as visited
+#     visited[element] = 1
+#
+#     # iterate through all the neighboring elements and call DFS on them
+#     for a in adj_dict[element]:
+#         first_element = a[0]
+#         if visited[first_element] != 1:
+#             DFS(first_element)
+#
+#     # add the terminal elements of DFS to the stack and then pop them from stack in step 2 while relaxing the edges
+#     stack.append(element)
+#
+# # iterate through all the elements calling DFS function
+# # for each and every element based on visited flag
+# for a in range(0, len(adj_dict) ):
+#     if visited[a] != 1:
+#         DFS(a)
+
+# --===============================
+# step 2 -> relax the edges
+
+# def DFS_shortest_path():
+#     while(stack):
+#         element = stack.pop()
+#
+#         for a in adj_dict[element]:
+#             node = a[0]
+#             weight = a[1]
+#
+#             dist_array[node] = min( dist_array[node] , dist_array[element] + weight )
+#
+#
+# DFS_shortest_path()
+# print(dist_array)
+
+#--=======================
+#--======================= Shortest Path in Undirected Acyclic Graph =======================
+#--======================= each one has a unit weight
+
+#            (1) ─────── (2)         (7)
+#           / │            \        / │
+#         /   │             \     /   │
+#       /     │              \  /     │
+#     (0)─---(3)──(4)──(5)───(6)─────(8)
+#
+# Undirected adjacency list:
+# adj_dict = {
+#       0 : [1, 3],
+#       1 : [0, 2, 3],
+#       2 : [1, 6],
+#       3 : [0, 1, 4],
+#       4 : [3, 5],
+#       5 : [4, 6],
+#       6 : [2, 5, 7, 8],
+#       7 : [6, 8],
+#       8 : [6, 7]
+# }
+#
+# dist_array = [float('inf')]*len(adj_dict)
+#
+# # kep the first element as 0 since the distance from 0 to 0 is 0
+# dist_array[0] = 0
+#
+# # pop elements from top of stack and
+# # add the neighbors on top of stack based on lowest weights
+# queue = deque()
+#
+# # node 0 has 0 distance
+# queue.append([0,0])
+#
+# while(queue):
+#     node, node_dist = queue.popleft()
+#
+#     for neighbor in adj_dict[node]:
+#         min_dist_from_node = min(dist_array[neighbor], node_dist + 1)
+#         if dist_array[neighbor] >  min_dist_from_node:
+#             dist_array[neighbor] = min_dist_from_node
+#             queue.append([ neighbor, min_dist_from_node  ])
+#
+# print(dist_array)
+
+
+#--=======================
+#--======================= Word Ladder - 1 =======================
+#--=======================
+
+# start_word = 'hit'
+# end_word = 'cog'
+# word_list = ['hot', 'dot', 'dog', 'lot', 'log', 'cog']
+# word_set = set(word_list)
+#
+#
+# queue = deque()
+# queue.append(['hit',1])
+#
+#
+#
+# letter_string = 'abcdefghijklmnopqrstuvwxyz'
+#
+# min_length = 0
+#
+#
+# while(queue):
+#     word, dist = queue.popleft()
+#     min_length = dist
+#
+#     for i in range( 0, len(word)):
+#         for letter in letter_string :
+#            final_word = word[:i] + letter + word[i+1:]
+#
+#            if final_word in word_set:
+#                word_set.remove(final_word)
+#                queue.append([final_word, dist+1])
+#
+#
+# print(min_length)
+
+
+
+#--=======================
+#--======================= Dijkstra's ALGORITHM =======================
+#--=======================
+
+#     (0)           (3)
+#     │  \        /    \
+#     │   \4   3/       \ 2
+#     │    \  /          \
+#   4 │    (2)──-─-6-----(5)
+#     │    / \           /
+#     │ 2/    \1     3 /
+#     │/       \     /
+#    (1)         (4)
+#
+# adj_dict = {
+#     0: [[1, 4], [2, 4]],
+#     1: [[0, 4], [2, 2]],
+#     2: [[0, 4], [1, 2], [3, 3], [4, 1], [5, 6]],
+#     3: [[2, 3], [5, 2]],
+#     4: [[2, 1], [5, 3]],
+#     5: [[2, 6], [3, 2], [4, 3]]
+# }
+
+# Method 2 -> using Priority queue (PQ)
+import heapq
+pq = []                   # just a plain list
+
+# heapq.heappush(pq, 5)
+# heapq.heappush(pq, 1)
+# heapq.heappush(pq, 3)
+# heapq.heappush(pq, 8)
+#
+# print(pq[0])              # → 1  (peek smallest)
+# heapq.heappop(pq)         # → 1  (pop smallest)
+# heapq.heappop(pq)         # → 3
+
+# the elements added in the priority queue are [ distance , node ]
+# heapq.heappush( pq, [0,0] )
+#
+# dist_array = [float('inf')]*len(adj_dict)
+# dist_array[0] = 0
+#
+#
+# while(pq):
+#     # grab the topmost element from PQ and get source_node and corresponding source_node_dist from 0
+#     source_node_dist, source_node  = heapq.heappop(pq)
+#
+#     # iterate through all the neighbors and
+#     for neighbor in adj_dict[source_node]:
+#         neighbor_node, neighbor_node_dist = neighbor
+#
+#         # calculte min distance from source node 0 and add to distance array
+#         min_dist_from_source_node = min(dist_array[neighbor_node], source_node_dist + neighbor_node_dist)
+#         if dist_array[neighbor_node] > min_dist_from_source_node:
+#            dist_array[neighbor_node] = min_dist_from_source_node
+#
+#            # based on the above comparison, add the neighbor_node and min_dist_from_source_node_to_neighbor_node into the priority queue
+#            heapq.heappush( pq, [  min_dist_from_source_node, neighbor_node ])
+# print( dist_array )
+
+
+# Method 1 -> using queue
+# queue = deque()
+# queue.append([0,0])
+#
+# dist_array = [ float('inf') ]*len(adj_dict)
+# dist_array[0] = 0
+#
+# while(queue):
+#     # grab the topmost element and get source_node and corresponding source_node_dist from 0
+#     source_node, source_node_dist = queue.popleft()
+#
+#     # iterate through all the neighbors and
+#     for neighbor in adj_dict[source_node]:
+#         neighbor_node , neighbor_node_dist = neighbor
+#
+#         # calculte min distance from source node 0 and add to distance array
+#         min_dist_from_source_node = min( dist_array[neighbor_node], source_node_dist + neighbor_node_dist )
+#         if dist_array[neighbor_node] >  min_dist_from_source_node:
+#             dist_array[neighbor_node] = min_dist_from_source_node
+#
+#             # based on the above comparison, add the neighbor_node and min_dist_from_source_node_to_neighbor_node into the queue
+#             queue.append([ neighbor_node , min_dist_from_source_node ])
+# print( dist_array )
+
+
+#--=======================
+#--======================= Print Shortest Path - Dijkstra's Algorithm =======================
+#--=======================
+
+#    (1) ── 2 ── (2) ── 5 ── (5)
+#     │           \           /
+#     │         4  \        / 1
+#    1│             \     /
+#     │              \  /
+#    (4) ─── 3 ───── (3)
+#
+
+# import heapq
+#
+# adj_dict = {
+#     1: [[2, 2], [4, 1]],
+#     2: [[1, 2], [3, 4], [5, 5]],
+#     3: [[2, 4], [4, 3], [5, 1]],
+#     4: [[1, 1], [3, 3]],
+#     5: [[2, 5], [3, 1]]
+# }
+#
+# # define the parent list and minimum distance list
+# parent = [0]* (len(adj_dict)+1)
+#
+# parent[1] = 1
+#
+# dist_array = [float('inf')]* ( len(adj_dict)+1 )
+#
+# dist_array[1] = 0
+#
+# pq=[]
+# heapq.heappush(pq, [0,1])
+#
+#
+# while(pq):
+#     # grab the topmost element from PQ and get source_node and corresponding source_node_dist from 0
+#     source_node_dist, source_node  = heapq.heappop(pq)
+#
+#     # iterate through all the neighbors and
+#     for neighbor in adj_dict[source_node]:
+#         neighbor_node, neighbor_node_dist = neighbor
+#
+#         # calculte min distance from source node  and add to distance array
+#         min_dist_from_source_node = min(dist_array[neighbor_node], source_node_dist + neighbor_node_dist)
+#         if dist_array[neighbor_node] > min_dist_from_source_node:
+#            dist_array[neighbor_node] = min_dist_from_source_node
+#            parent[neighbor_node] = source_node
+#
+#            # based on the above comparison, add the neighbor_node and min_dist_from_source_node_to_neighbor_node into the priority queue
+#            heapq.heappush( pq, [ dist_array[neighbor_node], neighbor_node])
+#
+# print( dist_array[1:] )
+# print( parent[1:] )
+# stack = []
+#
+#
+# src = 1
+# dest = 5
+#
+# stack.append(dest)
+# index = dest
+#
+#
+# while( index != src ):
+#      stack.append( parent[index] )
+#      index = stack[-1]
+#
+#
+# print(stack[::-1])
+
+
+#--=======================
+#--======================= Shortest Distance in a Binary Maze - Dijkstra's Algorithm =======================
+#--=======================
+# src =  [0,1]
+# dest = [2,2]
+#
+# maze = [
+#     [1,1,1,1],
+#     [1,1,0,1],
+#     [1,1,1,1],
+#     [1,1,0,0],
+#     [1,0,0,0]
+# ]
+#
+# dist_matrix = [ [float('inf')] * ( len(maze[0]) ) for _ in range(0,len(maze)) ]
+#
+# for row in dist_matrix:
+#   print(row)
+#
+# queue = deque()
+# queue.append([ 0, src])
+#
+#
+#
+# # rememeber that we are going to use a queue over here, not PQ or set,
+# # cause the distance is always a unit distance
+# while(queue):
+#     # grab the topmost element and get source_node and corresponding source_node_dist from 0
+#     source_node_dist, [ source_node_row , source_node_col ]   = queue.popleft()
+#
+#
+#     # look into all the 4 directions and if u find occurence of '1' , then add that to the queue , perform BFS to reach to the 'dest' node. keep recording the distance in the queue
+#     if source_node_row+1 < len(maze) and maze[source_node_row+1][source_node_col] == 1 and dist_matrix[source_node_row+1][source_node_col] > source_node_dist+1 :
+#         dist_matrix[source_node_row+1][source_node_col] = source_node_dist+1
+#         queue.append( [ source_node_dist+1 , [source_node_row+1 ,source_node_col] ] )
+#
+#
+#     if source_node_row-1 >=0 and maze[source_node_row-1][source_node_col] == 1 and dist_matrix[source_node_row-1][source_node_col] > source_node_dist+1:
+#         dist_matrix[source_node_row-1][source_node_col] = source_node_dist + 1
+#         queue.append( [ source_node_dist+1 , [source_node_row-1 ,source_node_col] ] )
+#
+#
+#     if source_node_col+1 < len(maze[0]) and maze[source_node_row][source_node_col+1] == 1 and dist_matrix[source_node_row][source_node_col+1] > source_node_dist+1:
+#         dist_matrix[source_node_row][source_node_col+1] = source_node_dist + 1
+#         queue.append( [ source_node_dist+1 , [source_node_row  ,source_node_col+1] ] )
+#
+#
+#     if source_node_col-1 >=0 and maze[source_node_row][source_node_col-1] == 1 and dist_matrix[source_node_row][source_node_col-1] > source_node_dist+1:
+#         dist_matrix[source_node_row][source_node_col-1] = source_node_dist + 1
+#         queue.append( [ source_node_dist+1 , [source_node_row  ,source_node_col-1] ] )
+#
+#
+# for row in dist_matrix:
+#   print(row)
+#   print ( maze[2][2] )
+
+#--=======================
+#--======================= Path With Minimum Effort - Dijkstra's Algorithm =======================
+#--=======================
+
+
+
+
+
+
+
+
 
 
 
