@@ -1384,9 +1384,607 @@ pq = []                   # just a plain list
 #   print(row)
 #   print ( maze[2][2] )
 
+
 #--=======================
-#--======================= Path With Minimum Effort - Dijkstra's Algorithm =======================
+#--======================= G-38. Cheapest Flights Within K Stops - Dijkstra's Algorithm =======================
 #--=======================
+
+#            5            5
+#      (0) ──────→ (1) ──────→ (2)
+#       │        ↗  │         ↗
+#      2│    2 /    │1      / 1
+#       │    /      │     /
+#       ↓  /        ↓   /
+#       (3)         (4)
+#
+
+import heapq
+pq = []
+
+#
+# adj_dict = {
+#     0: [[1, 5], [3, 2]],
+#     1: [[2, 5], [4, 1]],
+#     2: [],
+#     3: [[1, 2]],
+#     4: [[2, 1]]
+# }
+#
+# dist_array = [float('inf')]*(len(adj_dict))
+# dist_array[0] = 0
+# src = 0
+# dest = 2
+
+# # ****** [0,0,0] ->  number_of_stops, node, dist , the PQ is based on "number_of_stops"
+# heapq.heappush(pq, [0,0,0] )
+#
+# k = 2 #( number of stops )
+#
+# while(pq):
+#      # grab the topmost element from PQ comprising of number_of_steps, node, dist
+#      no_of_steps , source_node , source_node_dist = heapq.heappop(pq)
+#
+#      # iterate through all the neighbors and
+#      for neighbor in adj_dict[source_node]:
+#          neighbor_node, neighbor_node_dist = neighbor
+#
+#          # calculte min distance from source node 0 and add to distance array
+#          min_dist_from_source_node = min( dist_array[neighbor_node], source_node_dist + neighbor_node_dist )
+#
+#          if no_of_steps <= k+1 and dist_array[neighbor_node] > min_dist_from_source_node:
+#             dist_array[neighbor_node] = min_dist_from_source_node
+#
+#             # based on the above comparison, add the neighbor_node and min_dist_from_source_node_to_neighbor_node into the priority queue
+#             heapq.heappush( pq, [ no_of_steps + 1 , neighbor_node , min_dist_from_source_node] )
+#
+# print( dist_array )
+#
+
+#--=======================
+#--======================= G-38. Cheapest Flights Within K Stops - Dijkstra's Algorithm =======================
+#--=======================
+
+
+
+#--=======================
+#--=======================  G-45 - Minimum Spanning Tree - Prim's Algorithm  =======================
+#--=======================
+
+#              (0) ──── 2 ──── (1)
+#                \            /
+#               1 \         /  1
+#                  \      /
+#                   \   /
+#                   (2)
+#                   / \
+#                2/    \ 2
+#               /       \
+#             (3) ─ 1 ─ (4)
+#
+
+# adj_dict = {
+#     0: [[1, 2], [2, 1]],
+#     1: [[0, 2], [2, 1]],
+#     2: [[0, 1], [1, 1], [3, 2], [4, 2]],
+#     3: [[2, 2], [4, 1]],
+#     4: [[2, 2], [3, 1]]
+# }
+#
+# import heapq
+# # [ weight , current_node, parent_of_current_node ]
+# pq=[]
+# heapq.heappush(pq,[0,0,-1])
+#
+#
+# visited    = [0]* len(adj_dict)
+# visited[0] = 1
+#
+# MST = []
+# sum = 0
+#
+# while(pq):
+#     current_node_weight, current_node, parent_of_current_node = heapq.heappop(pq)
+#
+#     if visited[current_node] == 0:
+#         visited[current_node] = 1
+#         MST.append( ( parent_of_current_node, current_node ) )
+#         sum+=current_node_weight
+#
+#     for neighbor_node in adj_dict[current_node]:
+#         neighbor_node_value, neighbor_node_weight  = neighbor_node
+#
+#         if visited[ neighbor_node_value ] == 0:
+#             heapq.heappush(pq, [ neighbor_node_weight, neighbor_node_value, current_node ])
+#
+# print(MST)
+# print(sum)
+
+
+
+#--=======================
+#--=======================  G-46. Disjoint Set | Union by Rank | Union by Size | Path Compression  =======================
+#--=======================
+
+'''
+You have N isolated nodes labeled 1 to N. You're given a list of merge operations [u, v] — each says "connect node u with node v."
+
+After processing all operations, answer:
+
+How many connected components are there?
+Are nodes X and Y in the same component?
+
+N = 7
+Operations:
+  (1, 2)
+  (2, 3)
+  (4, 5)
+  (6, 7)
+  (5, 6)
+  (3, 7)
+
+Question 1: How many components at the end?
+Question 2: Are 1 and 4 in the same component?
+
+'''
+#
+# class DisjointSet:
+#     def __init__( self, n ):
+#         self.parent = [ i for i in range(n+1)]
+#         self.size = [1]*(n+1)
+#
+#     # ✅ trigger full path compression on every node
+#     def FindUltimateParent(self, node):
+#         if node == self.parent[node]:
+#             return node
+#         self.parent[node] = self.FindUltimateParent(self.parent[node])
+#         return self.parent[node]
+#
+#
+#     def UnionBySize(self, u , v):
+#        ultimate_parent_of_u = self.FindUltimateParent(u)
+#        ultimate_parent_of_v = self.FindUltimateParent(v)
+#
+#        if ultimate_parent_of_u == ultimate_parent_of_v:
+#           return None
+#
+#        if self.size[ultimate_parent_of_u] >= self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_v] = ultimate_parent_of_u
+#           self.size[ultimate_parent_of_u] += self.size[ultimate_parent_of_v]
+#
+#        elif self.size[ultimate_parent_of_u] < self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_u] = ultimate_parent_of_v
+#           self.size[ultimate_parent_of_v] += self.size[ultimate_parent_of_u]
+#
+#
+# if __name__ == "__main__":
+#       djs = DisjointSet(7)
+#       djs.UnionBySize(1,2)
+#       djs.UnionBySize(2, 3)
+#       djs.UnionBySize(4, 5)
+#       djs.UnionBySize(6, 7)
+#       djs.UnionBySize(5, 6)
+#       djs.UnionBySize(3, 7)
+#
+#       for i in range(1, 8):
+#           djs.FindUltimateParent(i)
+#
+#       print(djs.size[1:])
+#       print(djs.parent[1:])
+
+
+
+
+#--=======================
+#--=======================  G-47. Kruskal's Algorithm - Minimum Spanning Tree - C++ and Java  =======================
+#--=======================
+#
+#             (4)--──5 ───(3)
+#            ╱ │  ╲       │  ╲
+#        9  ╱  │   ╲      │   ╲ 8
+#          ╱   │ 3  ╲    3│    ╲
+#        (5) 1 │     ╲    │    (6)
+#          ╲   │      ╲   │    ╱
+#         4 ╲  │       ╲  │   ╱ 7
+#            ╲ │        ╲ │ ╱
+#             (1) ─--2 ──(2)
+#
+# import heapq
+# pq = []
+#
+# # Format: [weight, u, v]
+# heapq.heappush(pq, [5, 4, 3])   # 4 ─── 3
+# heapq.heappush(pq, [9, 4, 5])   # 4 ─── 5
+# heapq.heappush(pq, [4, 5, 1])   # 5 ─── 1
+# heapq.heappush(pq, [8, 3, 6])   # 3 ─── 6
+# heapq.heappush(pq, [7, 6, 2])   # 6 ─── 2
+# heapq.heappush(pq, [2, 1, 2])   # 1 ─── 2
+# heapq.heappush(pq, [1, 4, 1])   # 4 ─── 1   (left skip)
+# heapq.heappush(pq, [3, 3, 2])   # 3 ─── 2   (right skip)
+# heapq.heappush(pq, [3, 4, 2])   # 4 ─── 2   (diagonal)
+#
+#
+# class DisjointSet:
+#     def __init__( self, n ):
+#         self.parent = [ i for i in range(n+1)]
+#         self.size = [1]*(n+1)
+#         self.total_weight = 0
+#
+#
+#     # ✅ trigger full path compression on every node
+#     def FindUltimateParent(self, node):
+#         if node == self.parent[node]:
+#             return node
+#         self.parent[node] = self.FindUltimateParent(self.parent[node])
+#         return self.parent[node]
+#
+#
+#     def UnionBySize(self, weight, u, v):
+#        ultimate_parent_of_u = self.FindUltimateParent(u)
+#        ultimate_parent_of_v = self.FindUltimateParent(v)
+#
+#        if ultimate_parent_of_u == ultimate_parent_of_v:
+#           return None
+#
+#        if self.size[ultimate_parent_of_u] >= self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_v] = ultimate_parent_of_u
+#           self.size[ultimate_parent_of_u] += self.size[ultimate_parent_of_v]
+#
+#        elif self.size[ultimate_parent_of_u] < self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_u] = ultimate_parent_of_v
+#           self.size[ultimate_parent_of_v] += self.size[ultimate_parent_of_u]
+#
+#        self.total_weight += weight
+#
+#
+# djs = DisjointSet(6)
+#
+# while(pq):
+#     weight, u, v = heapq.heappop(pq)
+#     djs.UnionBySize( weight, u, v)
+#
+#
+# print(djs.size[1:])
+# print(djs.parent[1:])
+# print(djs.total_weight)
+#
+
+#--=======================
+#--=======================  G-48. Number of Provinces - Using  Disjoint Set  =======================
+#--=======================
+
+# import heapq
+# pq = []
+#
+# # Format: [weight, u, v]
+# heapq.heappush(pq, [1, 1, 2])
+# heapq.heappush(pq, [1, 2, 3])
+# heapq.heappush(pq, [1, 5, 4])
+# heapq.heappush(pq, [1, 6, 7])
+#
+#
+# class DisjointSet:
+#     def __init__( self, n ):
+#         self.parent = [ i for i in range(n+1)]
+#         self.size = [1]*(n+1)
+#         self.total_weight = 0
+#
+#
+#     # ✅ trigger full path compression on every node
+#     def FindUltimateParent(self, node):
+#         if node == self.parent[node]:
+#             return node
+#         self.parent[node] = self.FindUltimateParent(self.parent[node])
+#         return self.parent[node]
+#
+#
+#     def UnionBySize(self, weight, u, v):
+#        ultimate_parent_of_u = self.FindUltimateParent(u)
+#        ultimate_parent_of_v = self.FindUltimateParent(v)
+#
+#        if ultimate_parent_of_u == ultimate_parent_of_v:
+#           return None
+#
+#        if self.size[ultimate_parent_of_u] >= self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_v] = ultimate_parent_of_u
+#           self.size[ultimate_parent_of_u] += self.size[ultimate_parent_of_v]
+#
+#        elif self.size[ultimate_parent_of_u] < self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_u] = ultimate_parent_of_v
+#           self.size[ultimate_parent_of_v] += self.size[ultimate_parent_of_u]
+#
+#        self.total_weight += weight
+#
+#
+# djs = DisjointSet(7)
+#
+# while(pq):
+#     weight, u, v = heapq.heappop(pq)
+#     djs.UnionBySize( weight, u, v)
+#
+# print(djs.parent[1:])
+# count = 0
+#
+# for i in range( 1, len(djs.parent) ):
+#     if djs.parent[i] == i:
+#         count += 1
+#
+# print(count)
+
+
+#--=======================
+#--=======================  G-51. Number of Islands - II - Online Queries - DSU ( Disjoint set union )   =======================
+#--=======================
+
+
+
+# Input: n = 4, m = 5, k = 12,
+
+# operations = [
+#                [0,0],
+#                [1,1],
+#                [1,0],
+#                [0,1],
+#                [0,3],
+#                [1,3],
+#                [0,4],
+#                [3,2],
+#                [2,2],
+#                [1,2],
+#                [0,2] ]
+# n = 4
+# m = 5
+#
+# # Define the original and the visited array
+# arr = [ [0]*m for _ in range(n) ]
+# visited = [ [0]*m for _ in range(n) ]
+#
+#
+# class DisjointSet:
+#     def __init__( self, n ):
+#         self.parent = [ i for i in range(n+1)]
+#         self.size = [1]*(n+1)
+#         self.count = 0
+#
+#     # ✅ trigger full path compression on every node
+#     def FindUltimateParent(self, node):
+#         if node == self.parent[node]:
+#             return node
+#         self.parent[node] = self.FindUltimateParent(self.parent[node])
+#         return self.parent[node]
+#
+#     def UnionBySize(self, u, v):
+#        ultimate_parent_of_u = self.FindUltimateParent(u)
+#        ultimate_parent_of_v = self.FindUltimateParent(v)
+#
+#        if ultimate_parent_of_u == ultimate_parent_of_v:
+#           return None
+#
+#        if self.size[ultimate_parent_of_u] >= self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_v] = ultimate_parent_of_u
+#           self.size[ultimate_parent_of_u] += self.size[ultimate_parent_of_v]
+#
+#        elif self.size[ultimate_parent_of_u] < self.size[ultimate_parent_of_v]:
+#           self.parent[ultimate_parent_of_u] = ultimate_parent_of_v
+#           self.size[ultimate_parent_of_v] += self.size[ultimate_parent_of_u]
+#
+#        self.count -= 1
+#
+#
+# djs = DisjointSet(n*m)
+# result = []
+#
+# # iterate through each element in the operations list
+# # and see whether the element is visited.
+#
+# for element in operations:
+#     row, col = element
+#
+#     # if not visited already, then mark as visited
+#     # and then look in 4 directions
+#     if visited[row][col] == 0:
+#         visited[row][col] = 1
+#         arr[row][col] = 1
+#         djs.count += 1 # *** v important
+#
+#         # look up, down, left, right for 1 (or visited)
+#         # if visited, then join both the components together using disjoint set datastructure/algorithm
+#
+#         # right
+#         if col+1 < len(arr[0]) and visited[row][col+1] == 1:
+#             u = (row*m) + col
+#             v = (row*m) + col+1
+#             djs.UnionBySize(u, v)
+#
+#         # left
+#         if col-1 >= 0 and visited[row][col-1] == 1 :
+#             u = (row*m) + col
+#             v = (row*m) + col-1
+#             djs.UnionBySize(u, v)
+#
+#         # up
+#         if row-1 >= 0 and visited[row-1][col] == 1 :
+#             u = (row*m) + col
+#             v = (row-1)*m + col
+#             djs.UnionBySize(u, v)
+#
+#         # down
+#         if row+1 < len(arr) and visited[row+1][col] == 1 :
+#             u = (row*m) + col
+#             v = (row+1)*m + col
+#             djs.UnionBySize(u, v)
+#
+#     result.append(djs.count)
+#
+# # this gives the number of islands present with each operation
+# print(result)
+#
+# for i in range(19):
+#   djs.FindUltimateParent(i)
+
+
+#--=======================
+#--=======================  G-52. Making a Large Island - DSU - ( Disjoint set union )   =======================
+#--=======================
+
+
+# Define the original array
+arr = [
+        [ 1, 1, 0, 1, 1 ],
+        [ 1, 1, 0, 1, 1 ],
+        [ 1, 1, 0, 1, 1 ],
+        [ 0, 0, 1, 0, 0 ],
+        [ 0, 0, 1, 1, 1 ],
+        [ 0, 0, 1, 1, 1 ]
+      ]
+
+
+class DisjointSet:
+    def __init__( self, n ):
+        self.parent = [ i for i in range(n+1)]
+        self.size = [1]*(n+1)
+
+    # ✅ trigger full path compression on every node
+    def FindUltimateParent(self, node):
+        if node == self.parent[node]:
+            return node
+        self.parent[node] = self.FindUltimateParent(self.parent[node])
+        return self.parent[node]
+
+    def UnionBySize(self, u, v):
+       ultimate_parent_of_u = self.FindUltimateParent(u)
+       ultimate_parent_of_v = self.FindUltimateParent(v)
+
+       if ultimate_parent_of_u == ultimate_parent_of_v:
+          return None
+
+       if self.size[ultimate_parent_of_u] >= self.size[ultimate_parent_of_v]:
+          self.parent[ultimate_parent_of_v] = ultimate_parent_of_u
+          self.size[ultimate_parent_of_u] += self.size[ultimate_parent_of_v]
+
+       elif self.size[ultimate_parent_of_u] < self.size[ultimate_parent_of_v]:
+          self.parent[ultimate_parent_of_u] = ultimate_parent_of_v
+          self.size[ultimate_parent_of_v] += self.size[ultimate_parent_of_u]
+
+m = 5
+n = 6
+
+djs = DisjointSet(n*m)
+result = []
+
+
+for row in range( 0, len(arr)):
+    for col in range( 0, len(arr[0])):
+
+        # and then look in 4 directions
+        if arr[row][col] == 1:
+            # look up, down, left, right for 1
+            # if 1, then join both the components together using disjoint set datastructure/algorithm
+
+            # right
+            if col+1 < len(arr[0]) and arr[row][col+1] == 1:
+                u = (row*m) + col
+                v = (row*m) + col+1
+                djs.UnionBySize(u, v)
+
+            # left
+            if col-1 >= 0 and arr[row][col-1] == 1 :
+                u = (row*m) + col
+                v = (row*m) + col-1
+                djs.UnionBySize(u, v)
+
+            # up
+            if row-1 >= 0 and arr[row-1][col] == 1 :
+                u = (row*m) + col
+                v = (row-1)*m + col
+                djs.UnionBySize(u, v)
+
+            # down
+            if row+1 < len(arr) and arr[row+1][col] == 1 :
+                u = (row*m) + col
+                v = (row+1)*m + col
+                djs.UnionBySize(u, v)
+
+for i in range(30):
+  djs.FindUltimateParent(i)
+
+# print(djs.parent)
+
+max_size = 0
+ultimate_max_size = 0
+
+class DisjointSetNew(DisjointSet):
+    def __init__( self, source ):
+        self.parent = source.parent[:]  # ✅ COPY
+        self.size = source.size[:]  # ✅ COPY
+        self.set = set()
+
+    # ✅ trigger full path compression on every node
+    def FindUltimateParent(self, node):
+        if node == self.parent[node]:
+            return node
+        self.parent[node] = self.FindUltimateParent(self.parent[node])
+        return self.parent[node]
+
+    def UnionBySize(self, u, v):
+       ultimate_parent_of_u = self.FindUltimateParent(u)
+       ultimate_parent_of_v = self.FindUltimateParent(v)
+
+       if ultimate_parent_of_u == ultimate_parent_of_v:
+          return 0
+
+       if self.size[ultimate_parent_of_u] >= self.size[ultimate_parent_of_v] and ultimate_parent_of_u not in self.set:
+          self.set.add(ultimate_parent_of_u)
+          self.parent[ultimate_parent_of_v] = ultimate_parent_of_u
+          self.size[ultimate_parent_of_u] += self.size[ultimate_parent_of_v]
+
+          return self.size[ultimate_parent_of_u]
+
+       elif self.size[ultimate_parent_of_u] < self.size[ultimate_parent_of_v] and ultimate_parent_of_v not in self.set:
+          self.set.add(ultimate_parent_of_v)
+          self.parent[ultimate_parent_of_u] = ultimate_parent_of_v
+          self.size[ultimate_parent_of_v] += self.size[ultimate_parent_of_u]
+
+          return self.size[ultimate_parent_of_v]
+
+       return 0
+
+
+djs_new = DisjointSetNew(djs)
+
+for row in range( 0, len(arr) ):
+    for col in range( 0, len(arr[0]) ):
+        if arr[row][col] == 0:
+            max_size = 0
+
+            # right
+            if col+1 < len(arr[0]) and arr[row][col+1] == 1:
+                u = (row*m) + col
+                v = (row*m) + col+1
+                max_size += djs_new.UnionBySize(u, v)
+
+            # left
+            if col-1 >= 0 and arr[row][col-1] == 1 :
+                u = (row*m) + col
+                v = (row*m) + col-1
+                max_size += djs_new.UnionBySize(u, v)
+
+            # up
+            if row-1 >= 0 and arr[row-1][col] == 1 :
+                u = (row*m) + col
+                v = (row-1)*m + col
+                max_size += djs_new.UnionBySize(u, v)
+
+            # down
+            if row+1 < len(arr) and arr[row+1][col] == 1 :
+                u = (row*m) + col
+                v = (row+1)*m + col
+                max_size += djs_new.UnionBySize(u, v)
+
+            djs_new.set.clear()
+            ultimate_max_size = max( max_size , ultimate_max_size )
+
+
+print(ultimate_max_size)
 
 
 

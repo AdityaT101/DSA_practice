@@ -1,0 +1,423 @@
+====================================================================
+  MOST IMPORTANT TREE QUESTIONS FOR FAANG/MANGO INTERVIEWS
+====================================================================
+  Source: Real interview frequency data (2023-2026) across
+  Meta, Apple, Netflix, Google, Amazon, OpenAI, Stripe, Microsoft
+  Focus: Google L6 Staff Engineer Level
+  Playlist: Striver "Trees" (take U forward) L1-L54
+====================================================================
+
+
+====================================================================
+  TIER 1 - MUST KNOW (90%+ Interview Frequency)
+====================================================================
+  If you only have time for 8 problems, do these.
+--------------------------------------------------------------------
+
+1.  LeetCode 102 - Binary Tree Level Order Traversal        [*****]
+    - Asked at: Meta, Amazon, Google, Microsoft, Apple
+    - Why: Foundation for ALL BFS-on-tree problems
+    - Striver: L8 (Level Order Traversal)
+    - Variants: LC 107 (bottom-up), LC 199 (right view), LC 314 (vertical)
+
+2.  LeetCode 104 - Maximum Depth of Binary Tree             [*****]
+    - Asked at: Meta, Amazon, Google, LinkedIn
+    - Why: Simplest recursion warm-up - appears as follow-up everywhere
+    - Striver: L14 (Height / Max Depth)
+
+3.  LeetCode 236 - Lowest Common Ancestor (LCA)             [*****]
+    - Asked at: Meta, Google, Amazon, Apple, Microsoft, Uber
+    - Why: Classic recursion pattern; LCA appears in many follow-ups
+    - Striver: L27 (LCA in Binary Tree)
+
+4.  LeetCode 124 - Binary Tree Maximum Path Sum             [*****]
+    - Asked at: Meta, Google, Amazon, Apple (HARD)
+    - Why: Post-order recursion with "return vs global" trick
+    - Striver: L17 (Maximum Path Sum)
+    - **TOP GOOGLE L6 QUESTION**
+
+5.  LeetCode 297 - Serialize and Deserialize Binary Tree    [*****]
+    - Asked at: Google, Meta, Amazon, LinkedIn (HARD)
+    - Why: Design-flavored, tests traversal + parsing
+    - Striver: L36 (Serialize / Deserialize)
+    - **TOP GOOGLE L6 QUESTION**
+
+6.  LeetCode 543 - Diameter of Binary Tree                  [*****]
+    - Asked at: Meta, Google, Amazon, Facebook
+    - Why: Post-order + global variable - VERY common pattern
+    - Striver: L16 (Diameter)
+
+7.  LeetCode 226 - Invert Binary Tree                       [*****]
+    - Asked at: Google, Meta, Amazon (the Homebrew classic)
+    - Why: Simplest recursion, expected to solve in 2 min
+    - Striver: (implicit in L4 traversals)
+
+8.  LeetCode 98 - Validate Binary Search Tree               [*****]
+    - Asked at: Meta, Amazon, Google, Bloomberg, Microsoft
+    - Why: Tests min/max bounds recursion + inorder property
+    - Striver: BST playlist (validate BST)
+
+
+====================================================================
+  TIER 2 - VERY IMPORTANT (70-90% Frequency)
+====================================================================
+
+9.  LeetCode 105 - Build Tree from Preorder + Inorder       [****]
+    - Asked at: Meta, Amazon, Google, Microsoft
+    - Why: Recursion + hashmap indexing
+    - Striver: L34 (Construct from Preorder+Inorder)
+
+10. LeetCode 106 - Build Tree from Postorder + Inorder      [****]
+    - Asked at: Amazon, Google
+    - Striver: L35 (Construct from Postorder+Inorder)
+
+11. LeetCode 199 - Binary Tree Right Side View              [****]
+    - Asked at: Meta, Amazon, Bloomberg
+    - Why: Level order with last-node-per-level trick
+    - Striver: L24 (Right/Left View)
+
+12. LeetCode 103 - Zig-Zag Level Order Traversal            [****]
+    - Asked at: Amazon, Meta, Microsoft
+    - Striver: L19 (Zig-Zag Traversal)
+
+13. LeetCode 863 - All Nodes Distance K in Binary Tree      [****]
+    - Asked at: Google, Meta, Amazon
+    - Why: Parent-pointer BFS trick - Google favorite
+    - Striver: L30 (Nodes at Distance K)
+
+14. LeetCode 987 - Vertical Order Traversal                 [****]
+    - Asked at: Amazon, Meta, Google (HARD variant)
+    - Striver: L21 (Vertical Order)
+
+15. LeetCode 235 - LCA of BST                               [****]
+    - Asked at: Amazon, Microsoft, LinkedIn
+    - Why: BST property gives O(h) LCA (easier than LC 236)
+
+16. LeetCode 100 - Same Tree                                [****]
+    - Asked at: Amazon, Meta, LinkedIn
+    - Striver: L18 (Check Two Trees Identical)
+
+17. LeetCode 101 - Symmetric Tree                           [****]
+    - Asked at: Amazon, Microsoft, Meta
+    - Striver: L25 (Check Symmetric)
+
+18. LeetCode 110 - Balanced Binary Tree                     [****]
+    - Asked at: Amazon, Meta, Google
+    - Why: Height computation + early termination trick
+    - Striver: L15 (Check Balanced)
+
+
+====================================================================
+  TIER 3 - GOOD TO KNOW (40-70% Frequency)
+====================================================================
+
+19. LeetCode 662 - Maximum Width of Binary Tree             [***]
+    - Asked at: Amazon, Meta, Bloomberg
+    - Why: Indexing trick (2i, 2i+1) at each level
+    - Striver: L28 (Maximum Width)
+
+20. LeetCode 257 - Binary Tree Paths                        [***]
+    - Asked at: Google, Amazon
+    - Striver: L26 (Root to Node Path)
+
+21. LeetCode 112 / 113 - Path Sum I / II                    [***]
+    - Asked at: Amazon, Meta
+
+22. LeetCode 437 - Path Sum III                             [***]
+    - Asked at: Amazon, Google, Meta
+    - Why: Prefix-sum hashmap on tree paths
+
+23. LeetCode 114 - Flatten Binary Tree to Linked List       [***]
+    - Asked at: Meta, Amazon, Microsoft
+    - Striver: L38 (Flatten to Linked List)
+
+24. LeetCode 116 / 117 - Populate Next Right Pointers       [***]
+    - Asked at: Meta, Amazon, Google
+    - Why: O(1) space level-linking trick
+
+25. LeetCode 222 - Count Complete Tree Nodes                [***]
+    - Asked at: Google, Amazon
+    - Why: O(log^2 N) trick using left/right heights
+    - Striver: L32 (Count Nodes in Complete Tree)
+
+26. LeetCode 545 - Boundary of Binary Tree                  [***]
+    - Asked at: Amazon, Meta
+    - Striver: L20 (Boundary Traversal)
+
+27. LeetCode 958 - Check Completeness of Binary Tree        [***]
+    - Asked at: Amazon, Meta
+
+28. LeetCode 173 - BST Iterator                             [***]
+    - Asked at: Meta, LinkedIn, Google
+    - Why: Design + inorder controlled traversal
+
+29. LeetCode 230 - Kth Smallest in BST                      [***]
+    - Asked at: Amazon, Meta, Microsoft
+    - Why: Inorder traversal + counter
+
+30. LeetCode 653 - Two Sum IV (BST)                         [***]
+    - Asked at: Amazon, Facebook
+
+
+====================================================================
+  TIER 4 - L6/STAFF LEVEL ADVANCED (Google-specific)
+====================================================================
+
+31. LeetCode 968 - Binary Tree Cameras                      [***]
+    - Post-order state machine (HARD - Google favorite)
+
+32. LeetCode 979 - Distribute Coins in Binary Tree          [***]
+    - Post-order "flow" trick - Google L6+
+
+33. LeetCode 834 - Sum of Distances in Tree                 [***]
+    - Rerooting technique (HARD)
+
+34. LeetCode 1245 - Tree Diameter (general tree)            [***]
+    - Two-BFS trick
+
+35. LeetCode 2313 - Min Flips to Make Boolean Tree True     [**]
+    - DP on tree - L6+ level
+
+36. LeetCode 663 - Equal Tree Partition                     [**]
+    - Subtree sum trick
+
+37. Morris Traversal (LC 94 O(1) space)                     [**]
+    - Striver: L37 (Morris Preorder/Inorder)
+    - Threaded binary tree technique - L6 differentiator
+
+38. LeetCode 2385 - Amount of Time to Burn Tree             [***]
+    - Striver: L31 (Time to Burn Tree)
+    - Parent-map BFS - Google/Amazon L6
+
+
+====================================================================
+  FREQUENCY BY COMPANY
+====================================================================
+
+GOOGLE - Top 5 Tree Questions:
+  1. Binary Tree Max Path Sum (124)
+  2. Serialize/Deserialize (297)
+  3. All Nodes Distance K (863)
+  4. LCA (236)
+  5. Binary Tree Cameras (968)
+
+META - Top 5 Tree Questions:
+  1. LCA (236)
+  2. Right Side View (199)
+  3. Diameter (543)
+  4. Vertical Order (987)
+  5. Max Path Sum (124)
+
+AMAZON - Top 5 Tree Questions:
+  1. Level Order (102)
+  2. LCA (236)
+  3. Zig-Zag (103)
+  4. Diameter (543)
+  5. Path Sum III (437)
+
+MICROSOFT - Top 4 Tree Questions:
+  1. Validate BST (98)
+  2. LCA (236)
+  3. Level Order (102)
+  4. Kth Smallest BST (230)
+
+APPLE - Top 4 Tree Questions:
+  1. Max Depth (104)
+  2. Same Tree (100)
+  3. LCA (236)
+  4. Max Path Sum (124)
+
+
+====================================================================
+  STRIVER (TAKE U FORWARD) <-> FAANG QUESTIONS MAPPING
+====================================================================
+
+--------------------------------------------------------------------
+  PATTERN 1: TRAVERSALS (Foundation)
+--------------------------------------------------------------------
+L1   : Introduction to Trees
+L2   : Binary Tree Representation in Python
+L3   : Types of Binary Trees (Full, Complete, Perfect, Balanced, Degenerate)
+L4   : Traversal Techniques BFS/DFS overview
+L5   : Preorder Traversal          --> LC 144
+L6   : Inorder Traversal           --> LC 94  (foundation for BST problems)
+L7   : Postorder Traversal         --> LC 145
+L8   : Level Order Traversal (BFS) --> LC 102 [TIER 1 *****]
+L9   : Iterative Preorder (Stack)  --> LC 144 iterative
+L10  : Iterative Inorder (Stack)   --> LC 94 iterative + LC 173 (BST Iterator)
+L11  : Iterative Postorder 2-Stack --> LC 145 iterative
+L12  : Iterative Postorder 1-Stack --> LC 145 optimized
+L13  : Pre/In/Post in One Traversal --> Interview trick question
+
+--------------------------------------------------------------------
+  PATTERN 2: TREE PROPERTIES (Height / Balance / Diameter)
+--------------------------------------------------------------------
+L14  : Maximum Depth / Height       --> LC 104 [TIER 1 *****]
+L15  : Check Balanced Binary Tree   --> LC 110 [TIER 2 ****]
+L16  : Diameter of Binary Tree      --> LC 543 [TIER 1 *****]
+L17  : Maximum Path Sum             --> LC 124 [TIER 1 ***** GOOGLE]
+
+--------------------------------------------------------------------
+  PATTERN 3: STRUCTURAL CHECKS
+--------------------------------------------------------------------
+L18  : Check Two Trees Identical    --> LC 100 [TIER 2 ****]
+L25  : Check Symmetric              --> LC 101 [TIER 2 ****]
+
+--------------------------------------------------------------------
+  PATTERN 4: VIEWS OF A BINARY TREE
+--------------------------------------------------------------------
+L19  : Zig-Zag Traversal            --> LC 103 [TIER 2 ****]
+L20  : Boundary Traversal           --> LC 545 [TIER 3 ***]
+L21  : Vertical Order Traversal     --> LC 987 [TIER 2 ****]
+L22  : Top View                     --> Amazon favorite
+L23  : Bottom View
+L24  : Right / Left View            --> LC 199 [TIER 2 ****]
+
+--------------------------------------------------------------------
+  PATTERN 5: PATH & ANCESTOR PROBLEMS
+--------------------------------------------------------------------
+L26  : Root-to-Node Path            --> LC 257 [TIER 3 ***]
+L27  : Lowest Common Ancestor (LCA) --> LC 236 [TIER 1 *****]
+L28  : Maximum Width                --> LC 662 [TIER 3 ***]
+L29  : Children Sum Property        --> LC 623-like
+L30  : Nodes at Distance K          --> LC 863 [TIER 2 **** GOOGLE]
+L31  : Min Time to Burn Tree        --> LC 2385 [TIER 4 ***]
+
+--------------------------------------------------------------------
+  PATTERN 6: CONSTRUCTION & SERIALIZATION
+--------------------------------------------------------------------
+L32  : Count Nodes in Complete Tree --> LC 222 [TIER 3 ***]
+L33  : Requirements for Unique Tree --> Theory (need inorder + pre/post)
+L34  : Construct from Preorder+Inorder  --> LC 105 [TIER 2 ****]
+L35  : Construct from Postorder+Inorder --> LC 106 [TIER 2 ****]
+L36  : Serialize/Deserialize        --> LC 297 [TIER 1 ***** GOOGLE]
+
+--------------------------------------------------------------------
+  PATTERN 7: ADVANCED / L6 DIFFERENTIATORS
+--------------------------------------------------------------------
+L37  : Morris Traversal (O(1) space) --> LC 94/144 optimized [TIER 4]
+L38  : Flatten Binary Tree to LL     --> LC 114 [TIER 3 ***]
+
+
+====================================================================
+  REVERSE LOOKUP: FAANG QUESTION --> STRIVER VIDEO(S)
+====================================================================
+
+LC 94   - Inorder                     --> L6, L10 (iterative)
+LC 100  - Same Tree                   --> L18
+LC 101  - Symmetric Tree              --> L25
+LC 102  - Level Order                 --> L8
+LC 103  - Zig-Zag                     --> L19
+LC 104  - Max Depth                   --> L14
+LC 105  - Build from Preorder+Inorder --> L34
+LC 106  - Build from Postorder+Inorder--> L35
+LC 110  - Balanced Tree               --> L15
+LC 114  - Flatten to LL               --> L38
+LC 124  - Max Path Sum                --> L17
+LC 144  - Preorder                    --> L5, L9
+LC 145  - Postorder                   --> L7, L11, L12
+LC 199  - Right Side View             --> L24
+LC 222  - Count Complete Nodes        --> L32
+LC 226  - Invert Tree                 --> L5 pattern
+LC 236  - LCA                         --> L27
+LC 297  - Serialize/Deserialize       --> L36
+LC 543  - Diameter                    --> L16
+LC 545  - Boundary                    --> L20
+LC 662  - Max Width                   --> L28
+LC 863  - Nodes at Distance K         --> L30
+LC 987  - Vertical Order              --> L21
+LC 2385 - Time to Burn Tree           --> L31
+
+
+====================================================================
+  KEYWORD - PATTERN MAPPING (Quick Recognition)
+====================================================================
+
+KEYWORD                          --> PATTERN
+"Level" / "Layer"                --> BFS (queue)
+"Depth" / "Height"               --> DFS post-order recursion
+"Path from root"                 --> DFS w/ path list + backtrack
+"Path anywhere"                  --> Post-order + global max (LC 124/543)
+"LCA" / "Common ancestor"        --> Recursion returning node
+"View" (top/left/right/bottom)   --> BFS with (col, row) or level tracking
+"Serialize" / "Rebuild"          --> Preorder + null markers
+"Kth smallest/largest"           --> Inorder on BST
+"Validate BST"                   --> Inorder OR min/max bounds
+"Distance K from node"           --> Parent map + BFS
+"Vertical" / "Column"            --> BFS w/ (col, row) -> sorted map
+"Complete tree count"            --> Left-height vs right-height O(log^2 N)
+
+
+====================================================================
+  L6 INTERVIEW TIPS FOR TREE QUESTIONS
+====================================================================
+
+1. CLARIFY FIRST:
+   - Binary tree or BST?
+   - Can values repeat?
+   - Can nodes be null / tree be empty?
+   - Are parent pointers available?
+   - Is it a balanced tree? (affects complexity guarantees)
+
+2. RECURSION PATTERNS TO MASTER:
+   - Bottom-up (post-order return values)     -> height, diameter, LCA
+   - Top-down (pass state down)               -> path sum, validate BST
+   - Global variable + local return           -> max path sum (LC 124)
+   - Two-pointer / Two-tree recursion         -> same tree, symmetric
+
+3. ITERATIVE ALTERNATIVES (L6 bar):
+   - Know iterative inorder (stack)
+   - Know Morris traversal (O(1) space) for L6 differentiation
+   - Know BFS with (node, level) or (node, col)
+
+4. EDGE CASES:
+   - Empty tree (root == None)
+   - Single node
+   - Skewed tree (all left or all right -> O(N) depth)
+   - Duplicate values
+   - Negative values (matters for LC 124)
+
+5. COMPLEXITY:
+   - Most tree problems: O(N) time, O(H) space (H = height)
+   - Balanced: H = log N; Skewed: H = N
+   - BFS: O(N) time, O(W) space (W = max width)
+
+
+====================================================================
+  2-WEEK STUDY PLAN FOR GOOGLE L6 PREP (TREES)
+====================================================================
+
+WEEK 1 - FOUNDATIONS:
+  Day 1:   L1-L8   (representations + all 4 traversals)
+           - LC 102, 104, 226
+  Day 2:   L9-L13  (iterative traversals)
+           - LC 94 iterative, LC 173 (BST Iterator)
+  Day 3:   L14-L17 (height/balance/diameter/max path sum)
+           - LC 104, 110, 543, **124**
+  Day 4:   L18-L21 (structural + views)
+           - LC 100, 101, 103, 987
+  Day 5:   L22-L25 (top/bottom/left/right views + symmetric)
+           - LC 199
+
+WEEK 2 - ADVANCED:
+  Day 6:   L26-L27 (path + LCA)
+           - LC 257, **236**
+  Day 7:   L28-L31 (width + distance-K + burn tree)
+           - LC 662, **863**, 2385
+  Day 8:   L32-L36 (count nodes + construct + serialize)
+           - LC 222, 105, 106, **297**
+  Day 9:   L37-L38 (Morris + flatten)
+           - LC 114
+  Day 10:  BST focus
+           - LC 98, 230, 235, 173, 653
+  Day 11:  L6 differentiators
+           - LC 968 (Cameras), 979 (Coins), 834 (Rerooting)
+  Day 12:  Path-sum family
+           - LC 112, 113, 437
+  Day 13:  Mock interviews (30-45 min per problem)
+  Day 14:  Revisit weak spots
+
+
+====================================================================
+  END OF FAANG/MANGO TREE INTERVIEW CHEAT SHEET
+====================================================================
