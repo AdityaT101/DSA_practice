@@ -249,11 +249,192 @@ def LCAInBT( root, target1, target2):
     else:
          return None
 
+# --=======================  L30. Print all the Nodes at a distance of K in Binary Tree   =======================
+
+visited = set()
+nodes_queue = deque()
+parent_hmap = {}
+
+def add_children_in_the_nodes_queue(root,index):
+    left_element = root.left
+    right_element = root.right
+
+    if left_element is not None:
+       nodes_queue.append([left_element,index] )
+       parent_hmap[left_element] = root
+
+    if right_element is not None:
+       nodes_queue.append([right_element,index])
+       parent_hmap[right_element] = root
+
+
+
+def FindTargetRootNode( root, target):
+    if root is None:
+        return None
+
+    if( root.data == target ) :
+        return root
+
+    left = FindTargetRootNode( root.left , target)
+    if left : return left
+
+    right = FindTargetRootNode( root.right, target)
+    if right: return right
+
+
+return_list_nodes = []
+
+
+def PrintNodesAtDistanceK( root, dist, target):
+    # reset globals
+    visited.clear()
+    nodes_queue.clear()
+    parent_hmap.clear()
+    return_list_nodes.clear()
+
+    root1 = root
+    nodes_queue.append([ root, 0])
+
+    while(nodes_queue):
+        root_node, index = nodes_queue.popleft()
+        add_children_in_the_nodes_queue( root_node, index+1)
+
+    root_parent = FindTargetRootNode( root1, target)
+    visited.add(root_parent.data)
+
+    level = 1
+    nodes_queue.append([ root_parent, 0])
+
+    while( nodes_queue and level <= dist):
+
+        for _ in range(len(nodes_queue)):
+            root, index = nodes_queue.popleft()
+
+            left_element = root.left
+            right_element = root.right
+            parent_element = parent_hmap.get(root)
+
+            index += 1
+            if left_element is not None and left_element.data not in visited:
+                visited.add(left_element.data)
+                nodes_queue.append([ left_element, index])
+
+            if right_element is not None and right_element.data not in visited:
+                visited.add(right_element.data)
+                nodes_queue.append([ right_element, index])
+
+            if parent_element is not None and parent_element.data not in visited:
+                visited.add(parent_element.data)
+                nodes_queue.append([ parent_element, index])
+
+        level += 1
+
+
+    while( nodes_queue) :
+        root, index = nodes_queue.popleft()
+        return_list_nodes.append(root.data)
+
+    return return_list_nodes
+
+# --=======================  L34. Construct a Binary Tree from Preorder and Inorder Traversal  =======================
+index_hmap = defaultdict()
+
+
+
+def ConstructBTFromPreIn(inorder_list , preorder_list):
+    if not preorder_list or not inorder_list:
+        return None
+
+    root = Node(preorder_list[0])
+    separation_index = inorder_list.index( preorder_list[0] )
+
+    inorder_list_left  = inorder_list [    :    separation_index]
+    preorder_list_left = preorder_list[ 1 : 1 + separation_index]
+    root.left = ConstructBTFromPreIn( inorder_list_left, preorder_list_left)
+
+    inorder_list_right  = inorder_list [separation_index+1:]
+    preorder_list_right = preorder_list[ 1 + separation_index : ]
+    root.right = ConstructBTFromPreIn( inorder_list_right, preorder_list_right)
+
+    return root
+
+
+# --=======================  L35. Construct a Binary Tree from PostOrder and Inorder Traversal  =======================
+
+
+def ConstructBTFromPrePost(inorder_list , postorder_list):
+    if not postorder_list or not inorder_list:
+        return None
+
+    root = Node(postorder_list[-1])
+    separation_index = inorder_list.index( postorder_list[-1] )
+
+    inorder_list_left   = inorder_list  [   : separation_index]
+    postorder_list_left = postorder_list[   : separation_index]
+    root.left = ConstructBTFromPrePost( inorder_list_left, postorder_list_left)
+
+    inorder_list_right  = inorder_list  [ separation_index+1 :   ]
+    postorder_list_right= postorder_list[ separation_index   : -1]
+    root.right = ConstructBTFromPrePost( inorder_list_right, postorder_list_right)
+
+    return root
 
 
 # --=============================
 
 if __name__ == "__main__":
+    # --=======================  L34. Construct a Binary Tree from Preorder and Inorder Traversal  =======================
+    # inorder_list = [40, 3, 5, 4, 6, 2, 1, 7, 10, 9, 11, 111, 112, 113, 8]
+    # preorder_list = [1, 2, 3, 40, 4, 5, 6, 7, 8, 9, 10, 11, 111, 112, 113]
+    # inorder( ConstructBTFromPreIn( inorder_list, preorder_list) )
+
+    # --=======================  L35. Construct a Binary Tree from PostOrder and Inorder Traversal  =======================
+    # inorder_list = [ 40, 3, 5, 4, 6, 2, 1, 7, 10, 9, 11, 111, 112, 113, 8]
+    # postorder_list =[ 40, 5, 6, 4, 3, 2, 10, 113, 112, 111, 11, 9, 8, 7, 1]
+    # inorder(ConstructBTFromPrePost(inorder_list, postorder_list))
+
+
+    # --=======================  L35. Construct a Binary Tree from PostOrder and Inorder Traversal  =======================
+    # inorder_list = [ 40, 3, 5, 4, 6, 2, 1, 7, 10, 9, 11, 111, 112, 113, 8]
+    # postorder_list =[ 40, 5, 6, 4, 3, 2, 10, 113, 112, 111, 11, 9, 8, 7, 1]
+    # inorder(ConstructBTFromPrePost(inorder_list, postorder_list))
+
+    # --=======================  L336. Serialize and De-serialize Binary Tree                       =======================
+    serialized_list = deque([ 1, 2, 13, '#', '#', 4, 5, '#', '#', '#', '#'])
+    tree_root = Node( serialized_list.popleft() )
+    queue = deque([tree_root])
+
+    while( queue):
+        root = queue.popleft()
+
+        if serialized_list:
+            element_1 = serialized_list.popleft()
+            if element_1 != '#':
+               root.left = Node( element_1 )
+               queue.append( root.left)
+            else:
+                root.left = None
+
+        if serialized_list:
+            element_2 = serialized_list.popleft()
+            if element_2 != '#':
+                root.right = Node(element_2)
+                queue.append( root.right)
+            else:
+                root.right = None
+
+
+    inorder( tree_root )
+
+
+
+
+    # postorder_list =[ 40, 5, 6, 4, 3, 2, 10, 113, 112, 111, 11, 9, 8, 7, 1]
+    # inorder(ConstructBTFromPrePost(inorder_list, postorder_list))
+
+
+
     #
     #             (1)
     #           ╱    ╲
@@ -292,7 +473,6 @@ if __name__ == "__main__":
     root1.right.right.left.right.right = Node(111)
     root1.right.right.left.right.right.right = Node(112)
     root1.right.right.left.right.right.right.right = Node(113)
-
 
     #                    (1)
     #                   ╱   ╲
@@ -337,13 +517,25 @@ if __name__ == "__main__":
     # root_sym.right.right = Node(3)
     # root_sym.right.right.left = Node(8)
     # root_sym.right.right.right = Node(7)
-    #
+
     # print( IsMirrorImage_using_preorder( root_sym.left, root_sym.right) )
 
-    # --=======================  L26. Print Root to Node Path in Binary Tree   =======================
-
+    # --=======================  L26. Print Root to Node Path in Binary Tree                        =======================
     # print( PrintRootToNodeInBT( root1, 6) )
     # print( return_list_root_to_node )
 
-    # --=======================  L27. Lowest Common Ancestor in Binary Tree   =======================
-    print( LCAInBT( root1, 40, 6) )
+    # --=======================  L27. Lowest Common Ancestor in Binary Tree                         =======================
+    # print( LCAInBT( root1, 40, 6) )
+
+    # --=======================  L30. Print all the Nodes at a distance of K in Binary Tree         =======================
+    # print( PrintNodesAtDistanceK( root1, 2 , 2 ) )
+
+    # --=======================  L31. Minimum time taken to BURN the Binary Tree from a Node        =======================
+    # print(PrintNodesAtDistanceK(root1, 100, 2))
+
+
+
+
+
+
+
