@@ -484,87 +484,6 @@ Space Complexity: O(k) where k = alphabet size or number of unique words
 # BEGINNER PROBLEMS - Start Here!
 # ============================================================================
 
-# ============================================================================
-# PROBLEM 4: LeetCode 643 - Maximum Average Subarray I (EASY)
-# ============================================================================
-
-"""
-Problem:
---------
-You are given an integer array nums consisting of n elements, and an 
-integer k.
-
-Find a contiguous subarray whose length is equal to k that has the 
-maximum average value and return this value.
-
-Example 1:
-Input: nums = [1,12,-5,-6,50,3], k = 4
-Output: 12.75000
-Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
-
-Example 2:
-Input: nums = [5], k = 1
-Output: 5.00000
-
-Constraints:
-- n == nums.length
-- 1 <= k <= n <= 10^5
-- -10^4 <= nums[i] <= 10^4
-"""
-
-def findMaxAverage(nums, k):
-    """
-    Approach: Fixed sliding window with sum tracking
-    
-    Key Insight:
-    - This is the SIMPLEST fixed window problem - perfect for beginners!
-    - We need to find the maximum sum of any k consecutive elements
-    - Then divide by k to get the average
-    - Use a fixed window of size k and slide it across the array
-    - Track the current sum by adding right element and removing left element
-    - Keep track of the maximum sum seen
-    - The key is: maintain FIXED window size = k, track sum efficiently
-    
-    Time: O(n)
-    Space: O(1)
-    """
-    if len(nums) < k:
-        return None
-    
-    # Initialize first window
-    window_sum = sum(nums[:k])
-    max_sum = window_sum
-    
-    left = 0
-    right = k
-    
-    # Slide the window
-    while right < len(nums):
-        window_sum += nums[right]
-        window_sum -= nums[left]
-        max_sum = max(max_sum, window_sum)
-        left += 1
-        right += 1
-    
-    return max_sum / k
-
-
-# Test cases
-print("=" * 70)
-print("Problem 4: LeetCode 643 - Maximum Average Subarray I (EASY)")
-print("=" * 70)
-test_cases_643 = [
-    ([1, 12, -5, -6, 50, 3], 4),
-    ([5], 1),
-    ([0, 4, 0, 3, 2], 1),
-    ([4, 0, 4, 3, 3], 5)
-]
-
-for nums, k in test_cases_643:
-    result = findMaxAverage(nums, k)
-    print(f"nums: {nums}, k: {k}")
-    print(f"Result: {result:.5f}\n")
-
 
 # ============================================================================
 # PROBLEM 5: LeetCode 1456 - Maximum Number of Vowels in a Substring (MEDIUM)
@@ -1496,6 +1415,238 @@ print("=" * 70)
 # 4. Window slides to maintain indexDiff constraint
 # 5. For each new element, check ALL elements in current window
 # """)
+
+# ============================================================================
+# LeetCode 179 - Largest Number (MEDIUM) ⭐⭐  [CUSTOM COMPARATOR]
+# ============================================================================
+
+"""
+Problem:
+--------
+Given a list of non-negative integers nums, arrange them such that they form
+the largest number and return it.
+
+Since the result may be very large, you need to return a string instead of
+an integer.
+
+Example 1:
+Input: nums = [10,2]
+Output: "210"
+
+Example 2:
+Input: nums = [3,30,34,5,9]
+Output: "9534330"
+
+Constraints:
+- 1 <= nums.length <= 100
+- 0 <= nums[i] <= 10^9
+"""
+
+def largestNumber(nums):
+    """
+    Approach: Custom Comparator Sort
+
+    Key Insight:
+    - Naive: sort descending as strings → "3" vs "30": "30" > "3" lexicographically,
+      giving "303..." but "330" is bigger. Wrong!
+    - Correct comparison: a should come before b iff (a + b) > (b + a)
+      "3"+"30" = "330"  vs  "30"+"3" = "303"  → "330" wins → 3 before 30
+    - This comparator is transitive (provably), so sort is valid
+    - Python's sort needs a key, not a comparator → use functools.cmp_to_key
+    - Edge case: all zeros → "000" should be "0"
+
+    Example Walkthrough:
+    nums = [3,30,34,5,9] → strings
+    Compare pairs with a+b vs b+a:
+      9 first (9x > x9 for all)
+      5 next
+      34 vs 3: "343" vs "334" → 34 before 3
+      3 vs 30:  "330" vs "303" → 3 before 30
+    Order: [9,5,34,3,30] → "9534330" ✅
+
+    Pattern Recognition:
+    - "arrange to form largest/smallest" → custom comparator on concatenation
+    - Any time the ordering rule depends on the PAIR, not each element alone
+      → cmp_to_key
+    - Shows interviewer you know sort is pluggable, not just ascending/descending
+
+    Time: O(n log n * m) where m = avg digits (string concat in comparator)
+    Space: O(n)
+    """
+    def compare(a, b):
+        if a + b > b + a:
+            return -1   # a should come first
+        elif a + b < b + a:
+            return 1    # b should come first
+        return 0
+
+    strs = [str(n) for n in nums]
+    strs.sort(key=cmp_to_key(compare))
+
+    result = "".join(strs)
+
+    # Handle all-zeros case: "000" → "0"
+    return "0" if result[0] == "0" else result
+
+
+# Test cases
+print("\n" + "=" * 70)
+print("Problem 13: LeetCode 179 - Largest Number")
+print("=" * 70)
+
+test_cases_179 = [
+    ([10, 2], "210"),
+    ([3, 30, 34, 5, 9], "9534330"),
+    ([1], "1"),
+    ([0, 0], "0"),
+    ([432, 43243], "43243432"),
+    ([999999998, 999999997, 999999999], "999999999999999998999999997"),
+]
+
+for nums, expected in test_cases_179:
+    result = largestNumber(nums)
+    status = "✅" if result == expected else "❌"
+    print(f"Input: {nums}")
+    print(f"Expected: {expected}, Got: {result} {status}")
+    print()
+
+
+
+# HIGHEST FREQUENCY (Must Know for Interviews) - FAANG HARD PROBLEMS
+# ============================================================================
+# PROBLEM 3: LeetCode 30 - Substring with Concatenation of All Words
+# ============================================================================
+
+"""
+Problem:
+--------
+You are given a string s and an array of strings words. All the strings 
+of words are of the same length.
+
+A concatenated substring in s is a substring that contains all the 
+strings of any permutation of words concatenated.
+
+Return the starting indices of all the concatenated substrings in s.
+
+Example 1:
+Input: s = "barfoothefoobarman", words = ["foo","bar"]
+Output: [0,9]
+Explanation: 
+Substrings starting at index 0 is "barfoo" (permutation of ["bar","foo"])
+Substrings starting at index 9 is "foobar" (permutation of ["foo","bar"])
+
+Example 2:
+Input: s = "wordgoodgoodgoodbestword", words = ["word","good","best","word"]
+Output: []
+
+Example 3:
+Input: s = "barfoofoobarthefoobarman", words = ["bar","foo","the"]
+Output: [6,9,12]
+
+Constraints:
+- 1 <= s.length <= 10^4
+- 1 <= words.length <= 5000
+- 1 <= words[i].length <= 30
+- s and words[i] consist of lowercase English letters
+"""
+
+
+def findSubstring(arr, words):
+    """
+    Approach: Fixed sliding window with word-level frequency matching
+
+    Key Insight:
+    - This is like "Find All Anagrams" but with WORDS instead of characters
+    - Each word has the same length, so we can treat them as units
+    - We need to find all substrings that contain ALL words (in any order)
+    - Use a hashmap to track required word frequencies
+    - Use another hashmap to track current window word frequencies
+    - Window size is FIXED: len(words) * word_length
+    - Slide the window word by word (not character by character)
+    - For efficiency, we try starting from each position in [0, word_length)
+    - The key is: treat words as atomic units, match their frequencies with FIXED window
+
+    Time: O(n * word_length) where n = len(s)
+    Space: O(m) where m = number of unique words
+    """
+    #initialize
+
+    source_hmap = {}
+    words_hmap = {}
+
+    result = []
+
+    word_length = len(words[0])
+    word_count = len(words)
+
+    if len(s) < word_length * word_count:
+        return []
+
+    # fill in the words elements into words_hmap
+    i=0
+    while i < len(words) :
+        words_hmap[ words[i] ] = words_hmap.get( words[i], 0 ) + 1
+        i += 1
+
+    start_pos = 0
+    while start_pos < word_length:
+        # Initialize for this starting position
+        left = start_pos
+        right = start_pos
+        source_hmap = {}
+        matching_count = 0
+
+        while( right + word_length < len(arr)):
+              current_word_in_source = arr[ right : right + word_length]
+
+              if current_word_in_source in words_hmap:
+                  source_hmap[current_word_in_source] = source_hmap.get(current_word_in_source, 0) + 1
+                  matching_count += 1
+
+                  while source_hmap[current_word_in_source] > words_hmap[current_word_in_source]:
+                      leftmost_word_in_source = arr[left:left + word_length]
+                      source_hmap[leftmost_word_in_source] -= 1
+                      if source_hmap[leftmost_word_in_source] == 0:
+                          del source_hmap[leftmost_word_in_source]
+                      matching_count -= 1
+                      left += word_length
+
+                  if matching_count == len(words):
+                      result.append(left)
+                      leftmost_word_in_source = arr[left:left+word_length]
+                      source_hmap[leftmost_word_in_source] -= 1
+                      if source_hmap[leftmost_word_in_source] == 0:
+                        del source_hmap[leftmost_word_in_source]
+                      matching_count -= 1
+                      left += word_length
+
+              else:
+                  source_hmap.clear()
+                  matching_count = 0
+                  left = right+word_length
+
+              right += word_length
+
+        start_pos += 1
+    return result
+
+# Test cases
+print("=" * 70)
+print("Problem 3: LeetCode 30 - Substring with Concatenation of All Words (HARD)")
+print("=" * 70)
+test_cases_30 = [
+    ("barfoothefoobarman", ["foo", "bar"]),
+    ("wordgoodgoodgoodbestword", ["word", "good", "best", "word"]),
+    ("barfoofoobarthefoobarman", ["bar", "foo", "the"]),
+    ("lingmindraboofooowingdingbarrwingmonkeypoundcake", ["fooo", "barr", "wing", "ding", "wing"])
+]
+
+# for s, words in test_cases_30:
+#     result = findSubstring(s, words)
+#     print(f"s: '{s}'")
+#     print(f"words: {words}")
+#     print(f"Result: {result}\n")
+
 
 
 print("=" * 70)
